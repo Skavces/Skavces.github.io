@@ -46,17 +46,6 @@ export default function Contact() {
       hover: 'hover:border-green-400/50',
       iconColor: 'text-green-400'
     },
-    {
-      icon: <Instagram className="w-6 h-6" />,
-      label: 'Instagram',
-      value: '@jedelx',
-      href: 'https://instagram.com/jedelx',
-      gradient: 'from-pink-400 to-rose-600',
-      bg: 'bg-pink-500/10',
-      border: 'border-pink-400/20',
-      hover: 'hover:border-pink-400/50',
-      iconColor: 'text-pink-400'
-    }
   ];
 
   return (
