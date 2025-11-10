@@ -146,7 +146,7 @@ export default function Home() {
                 <div className="pl-4 space-y-2">
                   <div className="flex space-x-2">
                     <span className="text-cyan-400">name:</span>
-                    <span className="text-green-400">'Full Stack Dev'</span>
+                    <span className="text-green-400">'Selim Kavaklıçeşme'</span>
                     <span className="text-gray-400">,</span>
                   </div>
 
