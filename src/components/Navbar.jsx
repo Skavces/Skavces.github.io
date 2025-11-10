@@ -1,27 +1,28 @@
 import { useState, useEffect } from "react";
 import { Menu, X, Terminal } from "lucide-react";
+import { useLocation } from "react-router-dom";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
     };
-
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   useEffect(() => {
+    if (location.pathname !== "/") return;
     const observerOptions = {
       root: null,
       rootMargin: "-20% 0px -60% 0px",
-      threshold: 0
+      threshold: 0,
     };
-
     const observerCallback = (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -29,22 +30,27 @@ export default function Navbar() {
         }
       });
     };
-
     const observer = new IntersectionObserver(observerCallback, observerOptions);
     const sections = document.querySelectorAll("section[id]");
-    
     sections.forEach((section) => observer.observe(section));
+    return () => sections.forEach((section) => observer.unobserve(section));
+  }, [location.pathname]);
 
-    return () => {
-      sections.forEach((section) => observer.unobserve(section));
-    };
-  }, []);
+  const handleNavClick = (id) => {
+    if (location.pathname === "/") {
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: "smooth" });
+    } else {
+      window.location.href = `/#${id}`;
+    }
+    setIsMobileMenuOpen(false);
+  };
 
   const navItems = [
-    { name: "Ana Sayfa", href: "#home", id: "home" },
-    { name: "Hakkımda", href: "#about", id: "about" },
-    { name: "Projeler", href: "#projects", id: "projects" },
-    { name: "İletişim", href: "#contact", id: "contact" },
+    { name: "Ana Sayfa", id: "home" },
+    { name: "Hakkımda", id: "about" },
+    { name: "Projeler", id: "projects" },
+    { name: "İletişim", id: "contact" },
   ];
 
   return (
@@ -57,7 +63,10 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
-          <a href="#home" className="flex items-center space-x-3 group cursor-pointer">
+          <button
+            onClick={() => handleNavClick("home")}
+            className="flex items-center space-x-3 group cursor-pointer"
+          >
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-lg blur opacity-75 group-hover:opacity-100 transition duration-300"></div>
               <div className="relative bg-slate-900 p-2 rounded-lg border border-cyan-400/30">
@@ -66,17 +75,19 @@ export default function Navbar() {
             </div>
             <div className="flex flex-col">
               <span className="text-xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-                {"Selim Kavaklıçeşme"}
+                Selim Kavaklıçeşme
               </span>
-              <span className="text-xs text-gray-400 font-mono">Full Stack Web Developer</span>
+              <span className="text-xs text-gray-400 font-mono">
+                Full Stack Web Developer
+              </span>
             </div>
-          </a>
+          </button>
 
           <div className="hidden md:flex items-center space-x-1 ml-auto">
             {navItems.map((item) => (
-              <a
+              <button
                 key={item.id}
-                href={item.href}
+                onClick={() => handleNavClick(item.id)}
                 className={`relative px-4 py-2 text-sm font-medium transition-colors duration-300 group ${
                   activeSection === item.id
                     ? "text-cyan-400"
@@ -87,7 +98,7 @@ export default function Navbar() {
                 {activeSection === item.id && (
                   <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-cyan-400 to-blue-500"></span>
                 )}
-              </a>
+              </button>
             ))}
           </div>
 
@@ -95,7 +106,11 @@ export default function Navbar() {
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="md:hidden p-2 rounded-lg text-gray-300 hover:text-white hover:bg-slate-800 transition-colors"
           >
-            {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {isMobileMenuOpen ? (
+              <X className="w-6 h-6" />
+            ) : (
+              <Menu className="w-6 h-6" />
+            )}
           </button>
         </div>
       </div>
@@ -103,18 +118,17 @@ export default function Navbar() {
       {isMobileMenuOpen && (
         <div className="md:hidden px-4 pt-2 pb-6 space-y-2 bg-slate-900/95 backdrop-blur-md border-t border-cyan-400/10">
           {navItems.map((item) => (
-            <a
+            <button
               key={item.id}
-              href={item.href}
-              onClick={() => setIsMobileMenuOpen(false)}
-              className={`block px-4 py-3 rounded-lg text-base font-medium transition-all duration-300 ${
+              onClick={() => handleNavClick(item.id)}
+              className={`block w-full text-left px-4 py-3 rounded-lg text-base font-medium transition-all duration-300 ${
                 activeSection === item.id
                   ? "bg-gradient-to-r from-cyan-400/20 to-blue-500/20 text-cyan-400 border border-cyan-400/30"
                   : "text-gray-300 hover:bg-slate-800 hover:text-white"
               }`}
             >
               {item.name}
-            </a>
+            </button>
           ))}
         </div>
       )}

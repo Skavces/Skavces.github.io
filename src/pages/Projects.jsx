@@ -1,4 +1,5 @@
 import { Github, ExternalLink, Code2, Sparkles } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 export default function Projects() {
   const projects = [
@@ -9,8 +10,8 @@ export default function Projects() {
         'Full stack dil öğrenme platformu. Web ve mobil uygulama ile kullanıcılar interaktif şekilde yeni diller öğrenebiliyor. Gerçek zamanlı ilerleme takibi ve oyunlaştırma özellikleri içeriyor.',
       image: '/dil.png',
       tags: ['React', 'React Native', 'Tailwind', 'Nest.js', 'PostgreSQL'],
-      github: '#',
-      demo: '#',
+      github: '/private-projects',
+      demo: '/private-projects',
       gradient: 'from-cyan-400 to-blue-600',
     },
     {
@@ -20,8 +21,8 @@ export default function Projects() {
         'SomaFM için geliştirilmiş modern web sitesi ve mobil uygulama. Canlı radyo yayını, kanal listesi ve favorileme özellikleri. Cross-platform uyumlu streaming deneyimi.',
       image: '/somafm.jpg',
       tags: ['React', 'React Native', 'Tailwind', 'Express.js', 'PostgreSQL'],
-      github: '#',
-      demo: '#',
+      github: '/private-projects',
+      demo: '/private-projects',
       gradient: 'from-purple-400 to-pink-600',
     },
   ];
@@ -31,12 +32,14 @@ export default function Projects() {
       id="projects"
       className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 relative overflow-hidden py-20 scroll-mt-20"
     >
+      {/* Arka plan efektleri */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse"></div>
         <div className="absolute bottom-1/3 left-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl animate-pulse"></div>
       </div>
       <div className="absolute inset-0 bg-[linear-gradient(rgba(6,182,212,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(6,182,212,0.03)_1px,transparent_1px)] bg-[size:50px_50px]"></div>
 
+      {/* İçerik */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16 space-y-4">
           <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border border-cyan-400/20 rounded-full px-4 py-2 backdrop-blur-sm">
@@ -51,6 +54,7 @@ export default function Projects() {
           </h2>
         </div>
 
+        {/* Proje kartları */}
         <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
           {projects.map((project) => (
             <div
@@ -68,25 +72,22 @@ export default function Projects() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/50 to-transparent opacity-60"></div>
 
+                {/* Butonlar */}
                 <div className="absolute top-4 right-4 flex space-x-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                  <a
-                    href={project.github}
+                  <Link
+                    to={project.github}
                     className="p-2 bg-slate-900/90 backdrop-blur-sm rounded-lg border border-slate-700 hover:border-cyan-400/50 transition-colors"
-                    target="_blank"
-                    rel="noopener noreferrer"
                     aria-label={`${project.title} GitHub`}
                   >
                     <Github className="w-5 h-5 text-gray-300 hover:text-cyan-400" />
-                  </a>
-                  <a
-                    href={project.demo}
+                  </Link>
+                  <Link
+                    to={project.demo}
                     className="p-2 bg-slate-900/90 backdrop-blur-sm rounded-lg border border-slate-700 hover:border-cyan-400/50 transition-colors"
-                    target="_blank"
-                    rel="noopener noreferrer"
                     aria-label={`${project.title} Demo`}
                   >
                     <ExternalLink className="w-5 h-5 text-gray-300 hover:text-cyan-400" />
-                  </a>
+                  </Link>
                 </div>
               </div>
 
@@ -111,17 +112,15 @@ export default function Projects() {
                   ))}
                 </div>
 
-                <a
-                  href={project.demo}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <Link
+                  to={project.demo}
                   className="block mt-4 px-4 py-2.5 text-center bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border border-cyan-400/20 rounded-lg text-cyan-400 font-medium hover:from-cyan-500/20 hover:to-blue-500/20 hover:border-cyan-400/40 transition-all duration-300 backdrop-blur-sm group/btn"
                 >
                   <span className="flex items-center justify-center space-x-2">
                     <Code2 className="w-4 h-4 group-hover/btn:rotate-12 transition-transform" />
                     <span>Projeyi İncele</span>
                   </span>
-                </a>
+                </Link>
               </div>
 
               <div
@@ -131,6 +130,7 @@ export default function Projects() {
           ))}
         </div>
 
+        {/* Alt GitHub butonu */}
         <div className="text-center mt-16">
           <a
             href="https://github.com/Skavces"
