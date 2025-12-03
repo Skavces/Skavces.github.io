@@ -112,10 +112,6 @@ export default function Footer() {
               <span>© {currentYear} Tüm hakları saklıdır.</span>
               <span className="hidden md:inline">•</span>
               <span className="flex items-center space-x-1">
-                <span>Made with</span>
-                <Heart className="w-4 h-4 text-red-500 fill-red-500 animate-pulse" />
-                <span>and</span>
-                <span className="text-cyan-400">React</span>
               </span>
             </p>
             
