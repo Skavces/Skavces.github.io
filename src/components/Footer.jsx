@@ -1,133 +1,177 @@
-import { Mail, Linkedin, Github, MessageCircle, Instagram, Heart, Terminal } from 'lucide-react';
+import { Mail, Linkedin, Github, MessageCircle, Terminal, Code2 } from 'lucide-react';
 
 export default function Footer() {
   const socialLinks = [
     {
-      icon: <Github className="w-5 h-5" />,
-      href: 'https://github.com/username',
+      icon: <Github className="w-4 h-4" />,
+      href: 'https://github.com/Skavces',
       label: 'GitHub'
     },
     {
-      icon: <Linkedin className="w-5 h-5" />,
-      href: 'https://linkedin.com/in/username',
+      icon: <Linkedin className="w-4 h-4" />,
+      href: 'https://www.linkedin.com/in/selim-kavakl%C4%B1%C3%A7e%C5%9Fme-a1b7b3351/',
       label: 'LinkedIn'
     },
     {
-      icon: <Instagram className="w-5 h-5" />,
-      href: 'https://instagram.com/username',
-      label: 'Instagram'
-    },
-    {
-      icon: <MessageCircle className="w-5 h-5" />,
-      href: 'https://wa.me/905XXXXXXXXX',
+      icon: <MessageCircle className="w-4 h-4" />,
+      href: 'https://wa.me/905516021021',
       label: 'WhatsApp'
     },
     {
-      icon: <Mail className="w-5 h-5" />,
-      href: 'mailto:email@example.com',
+      icon: <Mail className="w-4 h-4" />,
+      href: 'mailto:selimkavaklicesme@gmail.com',
       label: 'Email'
     }
   ];
 
   const quickLinks = [
-    { name: 'Ana Sayfa', href: '#home' },
-    { name: 'Hakkımda', href: '#about' },
-    { name: 'Projeler', href: '#projects' },
-    { name: 'İletişim', href: '#contact' }
+    { name: 'home', href: '#home' },
+    { name: 'about', href: '#about' },
+    { name: 'projects', href: '#projects' },
+    { name: 'contact', href: '#contact' }
   ];
 
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="relative bg-slate-950 border-t border-slate-800/50">
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cyan-400/50 to-transparent"></div>
+    <footer className="relative bg-black border-t border-gray-800">
+      {/* Grid overlay */}
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(15,118,110,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(15,118,110,0.02)_1px,transparent_1px)] bg-[length:40px_40px]"></div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        {/* Main Content */}
         <div className="grid md:grid-cols-3 gap-8 mb-8">
-
+          {/* Brand Section */}
           <div className="space-y-4">
-            <div className="flex items-center space-x-3 group">
-              <div className="relative">
-                <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-lg blur opacity-75 group-hover:opacity-100 transition duration-300"></div>
-                <div className="relative bg-slate-900 p-2 rounded-lg border border-cyan-400/30">
-                  <Terminal className="w-5 h-5 text-cyan-400" />
-                </div>
+            <div className="flex items-center space-x-3">
+              <div className="bg-gray-900 border border-gray-800 rounded p-2">
+                <Terminal className="w-5 h-5 text-teal-400" />
               </div>
               <div className="flex flex-col">
-                <span className="text-lg font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-                  {"Selim Kavaklıçeşme"}
+                <span className="text-base font-bold text-white font-mono">
+                  SELIM_K
                 </span>
-                <span className="text-xs text-gray-500 font-mono">Full Stack Web Developer</span>
+                <span className="text-xs text-gray-600 font-mono">~/dev/portfolio</span>
               </div>
             </div>
-            <p className="text-gray-400 text-sm leading-relaxed">
-              Modern web uygulamaları geliştiren tutkulu bir yazılımcı.
+            <p className="text-gray-500 text-sm font-mono leading-relaxed">
+              <span className="text-gray-700">#</span> Backend Developer
+              <br />
+              <span className="text-gray-700">#</span> Building scalable systems
             </p>
           </div>
 
+          {/* Quick Links */}
           <div className="space-y-4">
-            <h3 className="text-white font-semibold text-lg">Hızlı Erişim</h3>
-            <ul className="space-y-2">
+            <div className="flex items-center space-x-2">
+              <Code2 className="w-4 h-4 text-teal-400" />
+              <h3 className="text-white font-mono text-sm font-bold">QUICK_LINKS</h3>
+            </div>
+            <div className="space-y-2">
               {quickLinks.map((link, index) => (
-                <li key={index}>
-                  <a
-                    href={link.href}
-                    className="text-gray-400 hover:text-cyan-400 transition-colors text-sm inline-flex items-center group"
-                  >
-                    <span className="w-0 group-hover:w-2 h-0.5 bg-cyan-400 transition-all duration-300 mr-0 group-hover:mr-2"></span>
-                    {link.name}
-                  </a>
-                </li>
+                <a
+                  key={index}
+                  href={link.href}
+                  className="group flex items-center space-x-2 text-gray-500 hover:text-teal-400 transition-colors text-sm font-mono"
+                >
+                  <span className="text-teal-400 opacity-0 group-hover:opacity-100 transition-opacity">$</span>
+                  <span className="group-hover:translate-x-1 transition-transform">
+                    cd {link.name}
+                  </span>
+                </a>
               ))}
-            </ul>
+            </div>
           </div>
 
+          {/* Social Links */}
           <div className="space-y-4">
-            <h3 className="text-white font-semibold text-lg">Sosyal Medya</h3>
-            <div className="flex flex-wrap gap-3">
+            <div className="flex items-center space-x-2">
+              <Terminal className="w-4 h-4 text-teal-400" />
+              <h3 className="text-white font-mono text-sm font-bold">CONNECT</h3>
+            </div>
+            <div className="grid grid-cols-4 gap-2">
               {socialLinks.map((social, index) => (
                 <a
                   key={index}
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group p-3 bg-slate-900/50 border border-slate-800 rounded-lg hover:border-cyan-400/50 hover:bg-slate-800 transition-all duration-300"
+                  className="group p-3 bg-gray-950 border border-gray-800 rounded hover:border-teal-800/50 transition-all"
                   aria-label={social.label}
+                  title={social.label}
                 >
-                  <span className="text-gray-400 group-hover:text-cyan-400 transition-colors">
+                  <span className="text-gray-600 group-hover:text-teal-400 transition-colors">
                     {social.icon}
                   </span>
                 </a>
               ))}
             </div>
-            <p className="text-gray-500 text-xs mt-4">
-              Benimle iletişime geçmek için sosyal medya hesaplarımı kullanabilirsiniz.
+            <p className="text-gray-600 text-xs font-mono">
+              // Available for collaboration
             </p>
           </div>
         </div>
 
-        <div className="pt-8 border-t border-slate-800/50">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-gray-500 text-sm flex items-center space-x-2">
-              <span>© {currentYear} Tüm hakları saklıdır.</span>
-              <span className="hidden md:inline">•</span>
-              <span className="flex items-center space-x-1">
-              </span>
-            </p>
-            
-            <div className="flex items-center space-x-2 text-xs text-gray-500">
-              <span className="px-3 py-1 bg-slate-900/50 border border-slate-800 rounded-full">
-                React + Vite
-              </span>
-              <span className="px-3 py-1 bg-slate-900/50 border border-slate-800 rounded-full">
-                Tailwind CSS
-              </span>
+        {/* Divider */}
+        <div className="border-t border-gray-800 my-8"></div>
+
+        {/* Bottom Section */}
+        <div className="space-y-4">
+          {/* System Info */}
+          <div className="bg-gray-950/50 border border-gray-800 rounded-lg p-4">
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 font-mono text-xs">
+              <div className="flex items-center space-x-4">
+                <div className="flex items-center space-x-2">
+                  <span className="text-gray-600">VERSION:</span>
+                  <span className="text-teal-400">1.0.0</span>
+                </div>
+                <span className="text-gray-800">•</span>
+                <div className="flex items-center space-x-2">
+                  <span className="text-gray-600">BUILD:</span>
+                  <span className="text-teal-400">{currentYear}</span>
+                </div>
+                <span className="text-gray-800">•</span>
+                <div className="flex items-center space-x-2">
+                  <span className="text-gray-600">STATUS:</span>
+                  <span className="flex items-center space-x-1">
+                    <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></span>
+                    <span className="text-green-400">ACTIVE</span>
+                  </span>
+                </div>
+              </div>
+
+              <div className="flex items-center space-x-2">
+                <span className="px-2 py-1 bg-gray-900 border border-gray-800 rounded text-gray-500">
+                  React + Vite
+                </span>
+                <span className="px-2 py-1 bg-gray-900 border border-gray-800 rounded text-gray-500">
+                  Tailwind
+                </span>
+              </div>
             </div>
+          </div>
+
+          {/* Copyright */}
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-mono">
+            <p className="text-gray-600">
+              © {currentYear} Selim Kavaklıçeşme. All rights reserved.
+            </p>
+            <p className="text-gray-700">
+              <span className="text-teal-400">~$</span> Made with passion for backend development
+            </p>
+          </div>
+
+          {/* Terminal Line */}
+          <div className="pt-4 flex items-center space-x-2 text-xs font-mono text-gray-700">
+            <span className="text-teal-400">~$</span>
+            <span>exit</span>
+            <span className="w-2 h-3 bg-teal-400 animate-pulse ml-1"></span>
           </div>
         </div>
       </div>
 
-      <div className="h-1 bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600"></div>
+      {/* Bottom Accent Line */}
+      <div className="h-0.5 bg-gradient-to-r from-transparent via-teal-400/50 to-transparent"></div>
     </footer>
   );
 }

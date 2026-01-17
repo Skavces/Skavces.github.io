@@ -1,4 +1,4 @@
-import { Lock, Mail } from 'lucide-react';
+import { Lock, Mail, Terminal, Shield, AlertTriangle } from 'lucide-react';
 import { useEffect } from 'react';
 
 export default function PrivateProjects() {
@@ -11,56 +11,135 @@ export default function PrivateProjects() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 flex items-center justify-center p-6 relative overflow-hidden">
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl animate-pulse delay-700"></div>
-      </div>
+    <div className="min-h-screen bg-black flex items-center justify-center p-6 pt-24 relative overflow-hidden">
+      {/* Grid overlay */}
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(15,118,110,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(15,118,110,0.03)_1px,transparent_1px)] bg-[length:40px_40px]"></div>
+
+      {/* Subtle glow effects */}
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-teal-500/5 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-teal-500/5 rounded-full blur-3xl"></div>
 
       <div className="w-full max-w-4xl relative z-10">
-        <div className="bg-slate-900/80 backdrop-blur-xl rounded-3xl border border-slate-700/50 shadow-2xl overflow-hidden">
-          <div className="bg-gradient-to-r from-cyan-500/10 to-blue-500/10 p-8 md:p-12 border-b border-slate-700/50">
-            <div className="flex items-center justify-center mb-6">
-              <div className="bg-gradient-to-br from-cyan-500 to-blue-600 p-4 rounded-2xl shadow-lg shadow-cyan-500/20">
-                <Lock className="w-8 h-8 text-white" />
-              </div>
+        {/* Main Terminal Window */}
+        <div className="bg-gray-950/90 border border-gray-800 rounded-lg overflow-hidden backdrop-blur-sm">
+          {/* Terminal Header */}
+          <div className="bg-gray-900 border-b border-gray-800 px-4 py-2 flex items-center justify-between">
+            <div className="flex items-center space-x-2">
+              <Terminal className="w-4 h-4 text-teal-400" />
+              <span className="text-gray-400 font-mono text-xs">access_denied.log</span>
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold text-white text-center mb-4 bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
-              Gizli Proje
-            </h1>
-            <p className="text-gray-400 text-center text-lg max-w-2xl mx-auto">
-              Gizlilik anlaşması kapsamındaki özel proje
-            </p>
+            <div className="flex space-x-1">
+              <div className="w-3 h-3 rounded-full bg-red-500"></div>
+              <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+              <div className="w-3 h-3 rounded-full bg-green-500"></div>
+            </div>
           </div>
 
-          <div className="p-8 md:p-12">
-            <div className="bg-gradient-to-br from-slate-800/50 to-slate-800/30 p-8 rounded-2xl border border-slate-700/50 mb-8">
-              <p className="text-gray-300 leading-relaxed text-lg mb-6">
-                Bu proje <span className="text-cyan-400 font-semibold">gizlilik anlaşması (NDA)</span> kapsamında olduğu için kamuya açık olarak paylaşılamıyor.
+          {/* Content */}
+          <div className="p-8 md:p-12 space-y-8">
+            {/* Warning Header */}
+            <div className="text-center space-y-4">
+              <div className="inline-flex items-center justify-center w-20 h-20 bg-red-950/50 border-2 border-red-800/50 rounded-full mb-4">
+                <Lock className="w-10 h-10 text-red-400" />
+              </div>
+              
+              <h1 className="text-3xl md:text-4xl font-bold text-white font-mono">
+                <span className="text-red-400">[ERROR]</span> ACCESS_DENIED
+              </h1>
+              
+              <div className="inline-block px-4 py-2 bg-red-950/50 border border-red-800/50 rounded font-mono text-sm text-red-400">
+                STATUS: 403 FORBIDDEN
+              </div>
+            </div>
+
+            {/* Terminal Output */}
+            <div className="bg-black/50 border border-gray-800 rounded-lg p-6 font-mono text-sm space-y-3">
+              <div className="text-gray-500">
+                <span className="text-teal-400">~$</span> cat project_info.txt
+              </div>
+              
+              <div className="space-y-2 pl-4">
+                <div className="flex items-start space-x-2">
+                  <AlertTriangle className="w-4 h-4 text-yellow-500 mt-0.5 shrink-0" />
+                  <div className="text-gray-400">
+                    <span className="text-yellow-500">WARNING:</span> This project is under <span className="text-red-400">Non-Disclosure Agreement (NDA)</span>
+                  </div>
+                </div>
+
+                <div className="flex items-start space-x-2">
+                  <Shield className="w-4 h-4 text-blue-500 mt-0.5 shrink-0" />
+                  <div className="text-gray-400">
+                    <span className="text-blue-400">PROTECTED:</span> Source code and documentation are confidential
+                  </div>
+                </div>
+              </div>
+
+              <div className="pt-4 border-t border-gray-800 space-y-2 text-gray-500">
+                <div>└─ <span className="text-gray-600">Project details:</span> <span className="text-red-400">CLASSIFIED</span></div>
+                <div>└─ <span className="text-gray-600">Repository:</span> <span className="text-red-400">PRIVATE</span></div>
+                <div>└─ <span className="text-gray-600">Demo:</span> <span className="text-red-400">RESTRICTED</span></div>
+              </div>
+            </div>
+
+            {/* Information Box */}
+            <div className="bg-gray-900/50 border border-gray-800 rounded-lg p-6 space-y-4">
+              <div className="flex items-center space-x-2 pb-2 border-b border-gray-800">
+                <Terminal className="w-4 h-4 text-teal-400" />
+                <span className="font-mono text-sm text-white font-bold">AVAILABLE_INFO</span>
+              </div>
+
+              <p className="text-gray-400 text-sm leading-relaxed font-mono">
+                <span className="text-gray-600">//</span> Bu proje <span className="text-teal-400">gizlilik anlaşması (NDA)</span> kapsamında
+                <br />
+                <span className="text-gray-600">//</span> olduğu için kamuya açık olarak paylaşılamıyor.
               </p>
-              <p className="text-gray-300 leading-relaxed text-lg">
-                Ancak bu projede kullandığım <span className="text-cyan-400 font-semibold">teknolojiler</span>, <span className="text-cyan-400 font-semibold">mimari yapı</span> ve <span className="text-cyan-400 font-semibold">yaklaşımlar</span> hakkında daha detaylı bilgi vermekten mutluluk duyarım.
+
+              <p className="text-gray-400 text-sm leading-relaxed font-mono">
+                <span className="text-gray-600">//</span> Ancak kullanılan <span className="text-teal-400">teknolojiler</span>, <span className="text-teal-400">mimari yapı</span>
+                <br />
+                <span className="text-gray-600">//</span> ve <span className="text-teal-400">yaklaşımlar</span> hakkında detaylı bilgi verebilirim.
               </p>
             </div>
 
-            <div className="text-center">
-              <p className="text-gray-400 mb-6 text-lg">
-                Daha fazla bilgi almak isterseniz
+            {/* Contact CTA */}
+            <div className="text-center space-y-4 pt-4">
+              <p className="text-gray-500 font-mono text-sm">
+                <span className="text-gray-600">$</span> request --more-info
               </p>
+
               <button
                 onClick={handleContactClick}
-                className="inline-flex items-center gap-2 bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-semibold px-8 py-4 rounded-xl hover:from-cyan-600 hover:to-blue-700 transition-all duration-300 shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40 hover:scale-105"
+                className="group inline-flex items-center space-x-3 px-8 py-4 bg-teal-950/50 border border-teal-800/50 rounded-lg hover:bg-teal-950 hover:border-teal-700/50 transition-all font-mono text-sm"
               >
-                <Mail className="w-5 h-5" />
-                İletişime Geç
+                <Mail className="w-5 h-5 text-teal-400 group-hover:scale-110 transition-transform" />
+                <span className="text-teal-400">INIT_CONTACT</span>
               </button>
+
+              <p className="text-gray-600 text-xs font-mono pt-2">
+                // Profesyonel gizlilik taahhüdü ile korunmaktadır
+              </p>
+            </div>
+
+            {/* Footer Command */}
+            <div className="pt-4 border-t border-gray-800">
+              <div className="flex items-center space-x-2 font-mono text-xs">
+                <span className="text-teal-400">~$</span>
+                <span className="text-gray-600">cd ../</span>
+                <span className="w-2 h-3 bg-teal-400 animate-pulse ml-1"></span>
+              </div>
             </div>
           </div>
         </div>
 
-        <p className="text-center text-gray-600 text-sm mt-8">
-          Profesyonel gizlilik taahhüdü ile korunmaktadır
-        </p>
+        {/* Security Badge */}
+        <div className="mt-6 text-center">
+          <div className="inline-flex items-center space-x-2 px-4 py-2 bg-gray-950/80 border border-gray-800 rounded-full">
+            <Shield className="w-3 h-3 text-green-400" />
+            <span className="font-mono text-xs text-gray-500">
+              SECURITY_LEVEL: <span className="text-green-400">HIGH</span>
+            </span>
+          </div>
+        </div>
       </div>
     </div>
   );

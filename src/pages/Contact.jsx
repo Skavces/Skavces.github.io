@@ -1,114 +1,221 @@
-import { Mail, Linkedin, Github, MessageCircle, Instagram, Sparkles, ExternalLink } from 'lucide-react';
+import { Mail, Linkedin, Github, MessageCircle, Terminal, Send } from 'lucide-react';
 
 export default function Contact() {
   const contacts = [
     {
-      icon: <Mail className="w-6 h-6" />,
-      label: 'E-posta',
+      icon: <Mail className="w-5 h-5" />,
+      label: 'EMAIL',
       value: 'selimkavaklicesme@gmail.com',
       href: 'mailto:selimkavaklicesme@gmail.com',
-      gradient: 'from-cyan-400 to-blue-600',
-      bg: 'bg-cyan-500/10',
-      border: 'border-cyan-400/20',
-      hover: 'hover:border-cyan-400/50',
-      iconColor: 'text-cyan-400'
+      command: 'sendmail',
+      protocol: 'SMTP'
     },
     {
-      icon: <Linkedin className="w-6 h-6" />,
-      label: 'LinkedIn',
+      icon: <Linkedin className="w-5 h-5" />,
+      label: 'LINKEDIN',
       value: 'linkedin.com/in/selimkavaklicesme',
       href: 'https://www.linkedin.com/in/selim-kavakl%C4%B1%C3%A7e%C5%9Fme-a1b7b3351/',
-      gradient: 'from-blue-400 to-blue-600',
-      bg: 'bg-blue-500/10',
-      border: 'border-blue-400/20',
-      hover: 'hover:border-blue-400/50',
-      iconColor: 'text-blue-400'
+      command: 'open-link',
+      protocol: 'HTTPS'
     },
     {
-      icon: <Github className="w-6 h-6" />,
-      label: 'GitHub',
+      icon: <Github className="w-5 h-5" />,
+      label: 'GITHUB',
       value: 'github.com/Skavces',
       href: 'https://github.com/Skavces',
-      gradient: 'from-purple-400 to-purple-600',
-      bg: 'bg-purple-500/10',
-      border: 'border-purple-400/20',
-      hover: 'hover:border-purple-400/50',
-      iconColor: 'text-purple-400'
+      command: 'git-remote',
+      protocol: 'HTTPS'
     },
     {
-      icon: <MessageCircle className="w-6 h-6" />,
-      label: 'WhatsApp',
+      icon: <MessageCircle className="w-5 h-5" />,
+      label: 'WHATSAPP',
       value: '+90 551 602 10 21',
       href: 'https://wa.me/905516021021',
-      gradient: 'from-green-400 to-green-600',
-      bg: 'bg-green-500/10',
-      border: 'border-green-400/20',
-      hover: 'hover:border-green-400/50',
-      iconColor: 'text-green-400'
+      command: 'whatsapp',
+      protocol: 'HTTPS'
     },
   ];
 
   return (
     <section
       id="contact"
-      className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 relative overflow-hidden py-24 scroll-mt-20"
+      className="min-h-screen bg-black relative overflow-hidden py-24 scroll-mt-20"
     >
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
-      </div>
+      {/* Grid overlay */}
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(15,118,110,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(15,118,110,0.03)_1px,transparent_1px)] bg-[length:40px_40px]"></div>
 
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(6,182,212,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(6,182,212,0.03)_1px,transparent_1px)] bg-[size:50px_50px]"></div>
+      {/* Subtle glow effects */}
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-teal-500/5 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-teal-500/5 rounded-full blur-3xl"></div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16 space-y-4">
-          <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border border-cyan-400/20 rounded-full px-4 py-2 backdrop-blur-sm">
-            <Sparkles className="w-4 h-4 text-cyan-400" />
-            <span className="text-sm text-gray-300 font-medium">İletişim</span>
+        {/* Section Header */}
+        <div className="mb-16">
+          <div className="inline-flex items-center space-x-2 mb-4">
+            <span className="text-teal-400 font-mono text-sm">~$</span>
+            <span className="text-gray-500 font-mono text-sm">cat contact.conf</span>
           </div>
-
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white">
-            Benimle <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">İletişime Geçin</span>
+          <h2 className="text-4xl sm:text-5xl font-bold text-white font-mono">
+            <span className="text-teal-400">#</span> CONTACT
           </h2>
-
-          <p className="text-lg text-gray-400 max-w-2xl mx-auto">
-            Yeni projeler, iş birlikleri veya sadece merhaba demek için benimle iletişime geçebilirsiniz.
+          <div className="mt-2 h-1 w-24 bg-linear-to-r from-teal-400 to-transparent"></div>
+          
+          <p className="mt-6 text-gray-400 font-mono text-sm max-w-2xl">
+            <span className="text-gray-600"># Yeni projeler, iş birlikleri veya sadece merhaba demek için</span>
+            <br />
+            <span className="text-gray-600"># benimle iletişime geçebilirsiniz.</span>
           </p>
         </div>
 
-        <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-6 [&>*:last-child:nth-child(odd)]:md:col-start-1 [&>*:last-child:nth-child(odd)]:md:col-end-3 [&>*:last-child:nth-child(odd)]:md:w-1/2 [&>*:last-child:nth-child(odd)]:md:mx-auto">
-          {contacts.map((contact, index) => (
-            <a
-              key={index}
-              href={contact.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`group relative bg-slate-900/50 backdrop-blur-xl rounded-2xl border ${contact.border} ${contact.hover} p-6 transition-all duration-300 hover:scale-[1.02] overflow-hidden`}
-            >
-              <div className={`absolute inset-0 bg-gradient-to-br ${contact.gradient} opacity-0 group-hover:opacity-5 blur-2xl transition-opacity duration-500`}></div>
+        <div className="max-w-5xl mx-auto">
+          {/* Main Contact Terminal */}
+          <div className="bg-gray-950/80 border border-gray-800 rounded-lg overflow-hidden mb-8">
+            {/* Terminal Header */}
+            <div className="bg-gray-900 border-b border-gray-800 px-4 py-2 flex items-center justify-between">
+              <div className="flex items-center space-x-2">
+                <Terminal className="w-4 h-4 text-teal-400" />
+                <span className="text-gray-400 font-mono text-xs">contact_info.sh</span>
+              </div>
+              <div className="flex space-x-1">
+                <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+                <div className="w-3 h-3 rounded-full bg-green-500"></div>
+              </div>
+            </div>
 
-              <div className="relative flex items-start space-x-4">
-                <div className={`flex-shrink-0 p-3 ${contact.bg} rounded-xl border ${contact.border} group-hover:scale-110 transition-transform duration-300`}>
-                  <div className={contact.iconColor}>
-                    {contact.icon}
-                  </div>
-                </div>
+            {/* Terminal Content */}
+            <div className="p-6 font-mono text-sm space-y-4">
+              <div className="text-gray-500">
+                <span className="text-teal-400">~$</span> ./get-contact-methods.sh
+              </div>
+              
+              <div className="text-gray-500 mb-4">
+                Fetching available contact methods...
+              </div>
 
-                <div className="flex-1 min-w-0">
-                  <h3 className="text-lg font-semibold text-white mb-1 group-hover:text-cyan-400 transition-colors">
-                    {contact.label}
-                  </h3>
-                  <p className="text-gray-400 text-sm truncate">{contact.value}</p>
-                </div>
+              {/* Contact Methods Grid */}
+              <div className="grid md:grid-cols-2 gap-4">
+                {contacts.map((contact, index) => (
+                  <a
+                    key={index}
+                    href={contact.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group bg-gray-900/50 border border-gray-800 rounded-lg p-4 hover:border-teal-800/50 hover:bg-gray-900 transition-all"
+                  >
+                    {/* Contact Header */}
+                    <div className="flex items-center justify-between mb-3 pb-2 border-b border-gray-800">
+                      <div className="flex items-center space-x-2">
+                        <span className="text-teal-400">{contact.icon}</span>
+                        <span className="text-white font-bold text-xs">{contact.label}</span>
+                      </div>
+                      <span className="text-xs text-gray-600 group-hover:text-teal-400 transition-colors">
+                        {contact.protocol}
+                      </span>
+                    </div>
 
-                <div className="flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity">
-                  <ExternalLink className="w-5 h-5 text-gray-400 group-hover:text-cyan-400 transition-colors" />
+                    {/* Contact Info */}
+                    <div className="space-y-2">
+                      <div className="flex items-start space-x-2">
+                        <span className="text-gray-600 text-xs mt-0.5">$</span>
+                        <div className="flex-1 min-w-0">
+                          <div className="text-xs text-gray-500 mb-1">command:</div>
+                          <div className="text-teal-400 text-xs font-mono break-all">
+                            {contact.command}
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="flex items-start space-x-2">
+                        <span className="text-gray-600 text-xs mt-0.5">→</span>
+                        <div className="flex-1 min-w-0">
+                          <div className="text-xs text-gray-500 mb-1">target:</div>
+                          <div className="text-gray-400 text-xs break-all group-hover:text-gray-300 transition-colors">
+                            {contact.value}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Status */}
+                    <div className="mt-3 pt-3 border-t border-gray-800 flex items-center justify-between">
+                      <div className="flex items-center space-x-1.5">
+                        <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></span>
+                        <span className="text-xs text-gray-600">active</span>
+                      </div>
+                      <Send className="w-3.5 h-3.5 text-gray-700 group-hover:text-teal-400 group-hover:translate-x-0.5 transition-all" />
+                    </div>
+                  </a>
+                ))}
+              </div>
+
+              {/* Footer */}
+              <div className="pt-4 mt-4 border-t border-gray-800">
+                <div className="flex items-center space-x-2 text-green-400 text-xs">
+                  <span>✓</span>
+                  <span>All contact methods verified and active</span>
                 </div>
               </div>
 
-              <div className={`absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r ${contact.gradient} scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left`}></div>
-            </a>
-          ))}
+              <div className="flex items-center space-x-1 pt-2">
+                <span className="text-teal-400">~$</span>
+                <span className="w-2 h-4 bg-teal-400 animate-pulse ml-1"></span>
+              </div>
+            </div>
+          </div>
+
+          {/* Response Time Card */}
+          <div className="grid md:grid-cols-3 gap-4">
+            <div className="bg-gray-950/80 border border-gray-800 rounded-lg p-4">
+              <div className="font-mono text-xs space-y-2">
+                <div className="text-gray-500">RESPONSE_TIME:</div>
+                <div className="text-2xl text-teal-400 font-bold">&lt; 24h</div>
+                <div className="text-gray-600">Usually within hours</div>
+              </div>
+            </div>
+
+            <div className="bg-gray-950/80 border border-gray-800 rounded-lg p-4">
+              <div className="font-mono text-xs space-y-2">
+                <div className="text-gray-500">AVAILABILITY:</div>
+                <div className="text-2xl text-green-400 font-bold flex items-center space-x-2">
+                  <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+                  <span>ONLINE</span>
+                </div>
+                <div className="text-gray-600">Mon - Sun, 09:00-22:00</div>
+              </div>
+            </div>
+
+            <div className="bg-gray-950/80 border border-gray-800 rounded-lg p-4">
+              <div className="font-mono text-xs space-y-2">
+                <div className="text-gray-500">TIMEZONE:</div>
+                <div className="text-2xl text-blue-400 font-bold">UTC+3</div>
+                <div className="text-gray-600">Turkey/Istanbul</div>
+              </div>
+            </div>
+          </div>
+
+          {/* Quick Note */}
+          <div className="mt-8 bg-gray-950/80 border border-gray-800 rounded-lg p-4">
+            <div className="font-mono text-xs space-y-2">
+              <div className="flex items-center space-x-2 text-gray-500 mb-2">
+                <Terminal className="w-4 h-4 text-teal-400" />
+                <span>README.md</span>
+              </div>
+              <div className="text-gray-600">
+                <span className="text-teal-400">#</span> İletişim Kuralları
+              </div>
+              <div className="text-gray-500 pl-4 space-y-1">
+                <div>→ Profesyonel projeler için: <span className="text-teal-400">email</span> veya <span className="text-teal-400">LinkedIn</span></div>
+                <div>→ Hızlı sorular için: <span className="text-teal-400">WhatsApp</span></div>
+                <div>→ Kod incelemesi için: <span className="text-teal-400">GitHub</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Footer Command */}
+        <div className="mt-12 font-mono text-xs text-gray-600 text-center">
+          <span className="text-teal-400">~$</span> echo "Thanks for visiting!"
         </div>
       </div>
     </section>

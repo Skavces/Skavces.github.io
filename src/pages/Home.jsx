@@ -1,11 +1,52 @@
-import { useState, useEffect } from 'react';
-import { Github, Linkedin, Mail, ArrowDown, Code2, Server, Layers, Zap } from 'lucide-react';
+import { useState, useEffect, useRef } from 'react';
+import { Github, Linkedin, Mail, Terminal, Database, Code2, Activity, Cpu, HardDrive } from 'lucide-react';
 
 export default function Home() {
   const [displayText, setDisplayText] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);
-  const fullText = "Full Stack Web Developer";
+  const [terminalLines, setTerminalLines] = useState([]);
+  const [currentCommand, setCurrentCommand] = useState('');
+  const canvasRef = useRef(null);
+  
+  const fullText = "Backend Developer";
 
+  // Matrix rain effect
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*(){}[]<>/\\|';
+    const fontSize = 14;
+    const columns = canvas.width / fontSize;
+    const drops = Array(Math.floor(columns)).fill(1);
+
+    function draw() {
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.fillStyle = '#0f766e';
+      ctx.font = fontSize + 'px monospace';
+
+      for (let i = 0; i < drops.length; i++) {
+        const text = chars[Math.floor(Math.random() * chars.length)];
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+        drops[i]++;
+      }
+    }
+
+    const interval = setInterval(draw, 33);
+    return () => clearInterval(interval);
+  }, []);
+
+  // Typing effect
   useEffect(() => {
     if (currentIndex < fullText.length) {
       const timeout = setTimeout(() => {
@@ -14,177 +55,233 @@ export default function Home() {
       }, 100);
       return () => clearTimeout(timeout);
     }
-  }, [currentIndex, fullText]);
+  }, [currentIndex]);
 
-  const skills = [
-    { icon: <Code2 className="w-5 h-5" />, text: "React" },
-    { icon: <Server className="w-5 h-5" />, text: "Node.js" },
-    { icon: <Layers className="w-5 h-5" />, text: "Nest.js" },
-    { icon: <Zap className="w-5 h-5" />, text: "Express.js" }
+  // Terminal simulation
+  useEffect(() => {
+    const commands = [
+      { cmd: 'systemctl status developer.service', delay: 1000 },
+      { cmd: '● developer.service - Backend Developer Service', delay: 1500 },
+      { cmd: '   Loaded: active (running)', delay: 2000 },
+      { cmd: '   Status: "Ready for new projects"', delay: 2500 },
+    ];
+
+    commands.forEach(({ cmd, delay }) => {
+      setTimeout(() => {
+        setTerminalLines(prev => [...prev, cmd]);
+      }, delay);
+    });
+  }, []);
+
+  const techStack = [
+    { icon: <Database className="w-4 h-4" />, name: "PostgreSQL", status: "active" },
+    { icon: <Cpu className="w-4 h-4" />, name: "Node.js", status: "active" },
+    { icon: <HardDrive className="w-4 h-4" />, name: "MongoDB", status: "active" },
+    { icon: <Code2 className="w-4 h-4" />, name: "Docker", status: "active" },
+  ];
+
+  const apiEndpoints = [
+    { method: 'GET', endpoint: '/api/skills', status: 200 },
+    { method: 'GET', endpoint: '/api/projects', status: 200 },
+    { method: 'POST', endpoint: '/api/contact', status: 200 },
   ];
 
   return (
-    <section
-      id="home"
-      className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 relative overflow-hidden pt-24 pb-20 scroll-mt-20"
-    >
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] border border-cyan-400/5 rounded-full"></div>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] border border-cyan-400/5 rounded-full"></div>
-      </div>
+    <section className="min-h-screen bg-black relative overflow-hidden">
+      {/* Matrix Rain Background */}
+      <canvas 
+        ref={canvasRef} 
+        className="absolute inset-0 opacity-20"
+      />
 
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(6,182,212,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(6,182,212,0.03)_1px,transparent_1px)] bg-[size:50px_50px]"></div>
+      {/* Grid overlay */}
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(15,118,110,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(15,118,110,0.03)_1px,transparent_1px)] bg-[length:40px_40px]"></div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <div className="space-y-8">
-            <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border border-cyan-400/20 rounded-full px-4 py-2 backdrop-blur-sm">
-              <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-              <span className="text-sm text-gray-300 font-medium">Yeni Projelere Açık</span>
-            </div>
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-20">
+        <div className="grid lg:grid-cols-2 gap-12 items-start">
+          {/* Left Column - Main Content */}
+          <div className="space-y-6">
 
-            <div className="space-y-4">
-              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white leading-tight">
-                Selim
-                <span className="block bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent">
-                  Kavaklıçeşme
-                </span>
+            {/* Name and Title */}
+            <div className="space-y-3">
+              <h1 className="text-5xl sm:text-6xl font-bold text-white font-mono">
+                <span className="text-teal-400">$</span> SELİM
+                <br />
+                <span className="text-gray-400">KAVAKLIÇEŞME</span>
               </h1>
 
-              <div className="flex items-center space-x-2 text-2xl sm:text-3xl text-gray-400 font-mono">
-                <span className="text-cyan-400">{'>'}</span>
-                <span>{displayText}</span>
-                <span className="w-0.5 h-8 bg-cyan-400 animate-pulse"></span>
+              <div className="flex items-center space-x-2 text-xl text-gray-500 font-mono">
+                <span className="text-teal-400">{'>'}</span>
+                <span className="text-teal-300">{displayText}</span>
+                <span className="w-0.5 h-6 bg-teal-400 animate-pulse"></span>
               </div>
             </div>
 
-            <div className="flex flex-wrap gap-3">
-              {skills.map((skill, index) => (
-                <div
-                  key={index}
-                  className="group flex items-center space-x-2 px-4 py-2 bg-slate-800/50 border border-slate-700 rounded-lg hover:border-cyan-400/50 hover:bg-slate-800 transition-all duration-300 backdrop-blur-sm"
+            {/* API Endpoints Display */}
+            <div className="bg-gray-950/80 border border-gray-800 rounded-lg p-4 backdrop-blur-sm">
+              <div className="flex items-center space-x-2 mb-3 pb-2 border-b border-gray-800">
+                <Terminal className="w-4 h-4 text-teal-400" />
+                <span className="text-gray-400 text-xs font-mono">API ENDPOINTS</span>
+              </div>
+              <div className="space-y-2 font-mono text-xs">
+                {apiEndpoints.map((api, idx) => (
+                  <div key={idx} className="flex items-center justify-between">
+                    <div className="flex items-center space-x-2">
+                      <span className={`${
+                        api.method === 'GET' ? 'text-blue-400' : 'text-green-400'
+                      } font-bold`}>{api.method}</span>
+                      <span className="text-gray-500">{api.endpoint}</span>
+                    </div>
+                    <span className="text-teal-400">{api.status}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Tech Stack Status */}
+            <div className="grid grid-cols-2 gap-3">
+              {techStack.map((tech, idx) => (
+                <div 
+                  key={idx}
+                  className="bg-gray-950/80 border border-gray-800 rounded-lg p-3 backdrop-blur-sm hover:border-teal-800/50 transition-colors"
                 >
-                  <span className="text-cyan-400 group-hover:scale-110 transition-transform">
-                    {skill.icon}
-                  </span>
-                  <span className="text-gray-300 text-sm font-medium">{skill.text}</span>
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-teal-400">{tech.icon}</span>
+                    <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                  </div>
+                  <div className="font-mono text-xs text-gray-400">{tech.name}</div>
                 </div>
               ))}
             </div>
 
-            <div className="flex flex-wrap gap-4 pt-4">
+            {/* CTA Buttons */}
+            <div className="flex flex-wrap gap-3 pt-4">
               <a
                 href="#projects"
-                className="group relative px-8 py-4 font-semibold text-white overflow-hidden rounded-lg transition-all duration-300 hover:scale-105"
-                aria-label="Projeler bölümüne git"
+                className="group relative px-6 py-3 font-mono text-sm text-black bg-teal-400 rounded overflow-hidden hover:bg-teal-300 transition-all"
               >
-                <span className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-600"></span>
-                <span className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-blue-500 opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-300"></span>
-                <span className="relative flex items-center space-x-2">
-                  <span>Projelerimi İncele</span>
-                  <ArrowDown className="w-5 h-5 group-hover:translate-y-1 transition-transform" />
-                </span>
+                <span>$ VIEW_PROJECTS</span>
               </a>
 
               <a
                 href="#contact"
-                className="group px-8 py-4 font-semibold text-gray-300 border border-slate-700 rounded-lg hover:border-cyan-400/50 hover:text-white transition-all duration-300 hover:scale-105 backdrop-blur-sm"
-                aria-label="İletişim bölümüne git"
+                className="group px-6 py-3 font-mono text-sm text-teal-400 border border-teal-800/50 rounded hover:bg-teal-950/30 transition-all"
               >
-                <span className="flex items-center space-x-2">
-                  <Mail className="w-5 h-5" />
-                  <span>İletişime Geç</span>
-                </span>
+                <span>$ INIT_CONTACT</span>
               </a>
             </div>
 
-            <div className="flex items-center space-x-4 pt-4">
-              <span className="text-gray-500 text-sm">Beni Takip Et:</span>
-              <div className="flex space-x-3">
-                {[
-                  { icon: <Github className="w-5 h-5" />, href: "https://github.com/Skavces", label: 'GitHub' },
-                  { icon: <Linkedin className="w-5 h-5" />, href: "https://www.linkedin.com/in/selim-kavakl%C4%B1%C3%A7e%C5%9Fme-a1b7b3351/", label: 'LinkedIn' },
-                ].map((social, index) => (
-                  <a
-                    key={index}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={social.label}
-                    className="group p-3 bg-slate-800/50 border border-slate-700 rounded-lg hover:border-cyan-400/50 hover:bg-slate-800 transition-all duration-300 backdrop-blur-sm"
-                  >
-                    <span className="text-gray-400 group-hover:text-cyan-400 transition-colors">
-                      {social.icon}
-                    </span>
-                  </a>
-                ))}
-              </div>
+            {/* Social Links */}
+            <div className="flex items-center space-x-3 pt-4">
+              <span className="text-gray-600 text-xs font-mono">CONNECT:</span>
+              {[
+                { icon: <Github className="w-4 h-4" />, href: "https://github.com/Skavces", label: 'GitHub' },
+                { icon: <Linkedin className="w-4 h-4" />, href: "https://www.linkedin.com/in/selim-kavakl%C4%B1%C3%A7e%C5%9Fme-a1b7b3351/", label: 'LinkedIn' },
+                { icon: <Mail className="w-4 h-4" />, href: "#contact", label: 'Email' },
+              ].map((social, idx) => (
+                <a
+                  key={idx}
+                  href={social.href}
+                  target={social.href.startsWith('http') ? "_blank" : undefined}
+                  rel={social.href.startsWith('http') ? "noopener noreferrer" : undefined}
+                  aria-label={social.label}
+                  className="p-2 bg-gray-950/80 border border-gray-800 rounded hover:border-teal-800/50 hover:text-teal-400 text-gray-500 transition-all"
+                >
+                  {social.icon}
+                </a>
+              ))}
             </div>
           </div>
 
-          <div className="relative lg:h-[600px] flex items-center justify-center">
-            <div className="relative w-full max-w-md">
-              <div className="bg-slate-800 rounded-t-2xl border border-slate-700 px-4 py-3 flex items-center space-x-2">
-                <div className="flex space-x-2">
-                  <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                  <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                  <div className="w-3 h-3 rounded-full bg-green-500"></div>
+          {/* Right Column - Terminal */}
+          <div className="lg:sticky lg:top-24">
+            <div className="bg-gray-950 border border-gray-800 rounded-lg overflow-hidden shadow-2xl">
+              {/* Terminal Header */}
+              <div className="bg-gray-900 border-b border-gray-800 px-4 py-2 flex items-center justify-between">
+                <div className="flex items-center space-x-2">
+                  <div className="flex space-x-1.5">
+                    <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                    <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+                    <div className="w-3 h-3 rounded-full bg-green-500"></div>
+                  </div>
+                  <Terminal className="w-4 h-4 text-gray-500 ml-2" />
+                  <span className="text-gray-500 text-xs font-mono">terminal@selim</span>
                 </div>
-                <span className="text-gray-400 text-xs font-mono ml-4">developer.js</span>
+                <div className="text-gray-600 text-xs font-mono">bash</div>
               </div>
 
-              <div className="bg-slate-900/90 backdrop-blur-xl rounded-b-2xl border-x border-b border-slate-700 p-6 font-mono text-sm space-y-3 shadow-2xl shadow-cyan-500/10">
-                <div className="flex space-x-2">
-                  <span className="text-purple-400">const</span>
-                  <span className="text-blue-400">developer</span>
-                  <span className="text-gray-400">=</span>
-                  <span className="text-yellow-400">{'{'}</span>
+              {/* Terminal Body */}
+              <div className="p-4 font-mono text-xs space-y-1 min-h-[400px]">
+                <div className="text-gray-500">Last login: {new Date().toLocaleString()}</div>
+                <div className="text-gray-500 mb-4">
+                  Welcome to Selim's Development Environment
                 </div>
 
-                <div className="pl-4 space-y-2">
-                  <div className="flex space-x-2">
-                    <span className="text-cyan-400">name:</span>
-                    <span className="text-green-400">'Selim Kavaklıçeşme'</span>
-                    <span className="text-gray-400">,</span>
+                {terminalLines.map((line, idx) => (
+                  <div key={idx} className={`${
+                    line.includes('●') ? 'text-teal-400' : 
+                    line.includes('Loaded') ? 'text-green-400' :
+                    line.includes('Status') ? 'text-blue-400' :
+                    'text-gray-400'
+                  }`}>
+                    {line}
                   </div>
+                ))}
 
-                  <div className="flex space-x-2">
-                    <span className="text-cyan-400">skills:</span>
-                    <span className="text-gray-400">[</span>
+                <div className="pt-4 space-y-2">
+                  <div className="text-gray-500">
+                    <span className="text-teal-400">~$</span> cat skills.json
                   </div>
-
-                  <div className="pl-4 space-y-1">
-                    <div className="text-green-400">'React'<span className="text-gray-400">,</span></div>
-                    <div className="text-green-400">'Node.js'<span className="text-gray-400">,</span></div>
-                    <div className="text-green-400">'TypeScript'<span className="text-gray-400">,</span></div>
-                  </div>
-
-                  <div className="flex space-x-2">
-                    <span className="text-gray-400">],</span>
-                  </div>
-
-                  <div className="flex space-x-2">
-                    <span className="text-cyan-400">passion:</span>
-                    <span className="text-green-400">'Building Cool Stuff'</span>
-                    <span className="text-gray-400">,</span>
-                  </div>
-
-                  <div className="flex space-x-2">
-                    <span className="text-cyan-400">available:</span>
-                    <span className="text-orange-400">true</span>
+                  <div className="pl-4 text-gray-400">
+                    <div>{'{'}</div>
+                    <div className="pl-4">
+                      <span className="text-blue-400">"backend"</span>: [
+                      <span className="text-green-400">"Node.js"</span>,
+                      <span className="text-green-400"> "Nest.js"</span>,
+                      <span className="text-green-400"> "Express.js"</span>
+                      ],
+                    </div>
+                    <div className="pl-4">
+                      <span className="text-blue-400">"databases"</span>: [
+                      <span className="text-green-400">"PostgreSQL"</span>,
+                      <span className="text-green-400"> "MongoDB"</span>,
+                      <span className="text-green-400"> "Redis"</span>
+                      ],
+                    </div>
+                    <div className="pl-4">
+                      <span className="text-blue-400">"tools"</span>: [
+                      <span className="text-green-400">"Docker"</span>,
+                      <span className="text-green-400"> "Git"</span>,
+                      <span className="text-green-400"> "Linux"</span>
+                      ]
+                    </div>
+                    <div>{'}'}</div>
                   </div>
                 </div>
 
-                <div className="flex space-x-2">
-                  <span className="text-yellow-400">{'}'}</span>
-                  <span className="text-gray-400">;</span>
+                <div className="pt-4">
+                  <div className="flex items-center space-x-1">
+                    <span className="text-teal-400">~$</span>
+                    <span className="w-2 h-4 bg-teal-400 animate-pulse ml-1"></span>
+                  </div>
                 </div>
+              </div>
+            </div>
 
-                <div className="flex items-center space-x-1 pt-2">
-                  <span className="text-cyan-400">{'>'}</span>
-                  <span className="w-2 h-4 bg-cyan-400 animate-pulse"></span>
+            {/* System Info Card */}
+            <div className="mt-4 bg-gray-950/80 border border-gray-800 rounded-lg p-4 backdrop-blur-sm">
+              <div className="font-mono text-xs space-y-2">
+                <div className="flex justify-between text-gray-500">
+                  <span>UPTIME:</span>
+                  <span className="text-teal-400">99.9%</span>
+                </div>
+                <div className="flex justify-between text-gray-500">
+                  <span>RESPONSE_TIME:</span>
+                  <span className="text-teal-400">&lt; 100ms</span>
+                </div>
+                <div className="flex justify-between text-gray-500">
+                  <span>PROJECTS_DEPLOYED:</span>
+                  <span className="text-teal-400">24+</span>
                 </div>
               </div>
             </div>
@@ -192,10 +289,13 @@ export default function Home() {
         </div>
       </div>
 
+      {/* Scroll Indicator */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-        <div className="flex flex-col items-center space-y-2">
-          <span className="text-gray-500 text-xs font-medium">Aşağı Kaydır</span>
-          <ArrowDown className="w-5 h-5 text-cyan-400" />
+        <div className="flex flex-col items-center space-y-1">
+          <span className="text-gray-700 text-xs font-mono">SCROLL_DOWN</span>
+          <div className="w-5 h-8 border-2 border-teal-800/50 rounded-full p-1">
+            <div className="w-1 h-2 bg-teal-400 rounded-full mx-auto animate-pulse"></div>
+          </div>
         </div>
       </div>
     </section>
