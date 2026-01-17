@@ -86,7 +86,9 @@ export default function Home() {
   ];
 
   return (
-    <section className="min-h-screen bg-black relative overflow-hidden" id="home">
+    // DÜZELTME 1: "flex items-center" yerine "flex flex-col" yapıldı.
+    // Bu sayede içerik ve scroll butonu alt alta dizilebilir ve scroll butonu en alta itilebilir.
+    <section className="min-h-screen bg-black relative overflow-hidden flex flex-col" id="home">
       {/* Matrix Rain Background */}
       <canvas 
         ref={canvasRef} 
@@ -96,8 +98,10 @@ export default function Home() {
       {/* Grid overlay */}
       <div className="absolute inset-0 bg-[linear-gradient(rgba(15,118,110,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(15,118,110,0.03)_1px,transparent_1px)] bg-[length:40px_40px]"></div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-20">
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
+      {/* DÜZELTME 2: İçeriği kapsayan div'e "flex-grow flex items-center" verildi.
+          Böylece bu kısım ekranın boş kalan tüm alanını kaplar ve içeriği ortalar. */}
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 w-full flex-grow flex items-center">
+        <div className="grid lg:grid-cols-2 gap-12 items-center w-full">
           {/* Left Column - Main Content */}
           <div className="space-y-6">
 
@@ -193,7 +197,7 @@ export default function Home() {
           </div>
 
           {/* Right Column - Terminal */}
-          <div className="lg:sticky lg:top-24">
+          <div className="w-full">
             <div className="bg-gray-950 border border-gray-800 rounded-lg overflow-hidden shadow-2xl">
               {/* Terminal Header */}
               <div className="bg-gray-900 border-b border-gray-800 px-4 py-2 flex items-center justify-between">
@@ -288,8 +292,11 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Scroll Indicator - DÜZELTME BURADA */}
-      <div className="absolute bottom-2 md:bottom-8 left-1/2 -translate-x-1/2 animate-bounce z-20">
+      {/* Scroll Indicator - DÜZELTME 3: Yapısal Değişiklik */}
+      {/* - Mobilde (default): "relative mt-12 mb-8" -> İçeriğin altına 12 birim boşluk bırakarak yerleşir. Asla üstüne binmez.
+         - Desktopta (md:): "md:absolute md:bottom-8" -> Eskisi gibi altta sabit durur.
+      */}
+      <div className="relative z-20 mt-12 mb-8 md:mt-0 md:mb-0 md:absolute md:bottom-8 left-0 md:left-1/2 w-full md:w-auto flex justify-center md:-translate-x-1/2 animate-bounce">
         <div className="flex flex-col items-center space-y-1">
           <span className="text-gray-700 text-xs font-mono">SCROLL_DOWN</span>
           <div className="w-5 h-8 border-2 border-teal-800/50 rounded-full p-1">
