@@ -5,7 +5,6 @@ export default function Home() {
   const [displayText, setDisplayText] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);
   const [terminalLines, setTerminalLines] = useState([]);
-  const [currentCommand, setCurrentCommand] = useState('');
   const canvasRef = useRef(null);
   
   const fullText = "Backend Developer";
@@ -87,7 +86,7 @@ export default function Home() {
   ];
 
   return (
-    <section className="min-h-screen bg-black relative overflow-hidden">
+    <section className="min-h-screen bg-black relative overflow-hidden" id="home">
       {/* Matrix Rain Background */}
       <canvas 
         ref={canvasRef} 
@@ -177,7 +176,7 @@ export default function Home() {
               {[
                 { icon: <Github className="w-4 h-4" />, href: "https://github.com/Skavces", label: 'GitHub' },
                 { icon: <Linkedin className="w-4 h-4" />, href: "https://www.linkedin.com/in/selim-kavakl%C4%B1%C3%A7e%C5%9Fme-a1b7b3351/", label: 'LinkedIn' },
-                { icon: <Mail className="w-4 h-4" />, href: "#contact", label: 'Email' },
+                { icon: <Mail className="w-4 h-4" />, href: "mailto:selimkavaklicesme@gmail.com", label: 'Email' },
               ].map((social, idx) => (
                 <a
                   key={idx}
@@ -289,8 +288,8 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+      {/* Scroll Indicator - DÜZELTME BURADA */}
+      <div className="absolute bottom-2 md:bottom-8 left-1/2 -translate-x-1/2 animate-bounce z-20">
         <div className="flex flex-col items-center space-y-1">
           <span className="text-gray-700 text-xs font-mono">SCROLL_DOWN</span>
           <div className="w-5 h-8 border-2 border-teal-800/50 rounded-full p-1">

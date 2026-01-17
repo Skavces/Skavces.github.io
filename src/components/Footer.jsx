@@ -33,7 +33,6 @@ export default function Footer() {
 
   const currentYear = new Date().getFullYear();
 
-  // Yumuşak kaydırma fonksiyonu
   const handleScroll = (e, id) => {
     e.preventDefault();
     const element = document.getElementById(id);
@@ -130,7 +129,9 @@ export default function Footer() {
           {/* System Info */}
           <div className="bg-gray-950/50 border border-white/10 rounded-lg p-4">
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 font-mono text-xs">
-              <div className="flex items-center space-x-4">
+              
+              {/* DÜZELTME BURADA YAPILDI: flex-wrap eklendi ve space-x yerine gap kullanıldı */}
+              <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
                 <div className="flex items-center space-x-2">
                   <span className="text-gray-600">VERSION:</span>
                   <span className="text-teal-400">1.0.0</span>
@@ -139,6 +140,15 @@ export default function Footer() {
                 <div className="flex items-center space-x-2">
                   <span className="text-gray-600">BUILD:</span>
                   <span className="text-teal-400">{currentYear}</span>
+                </div>
+                {/* Mobilde ekran daralırsa Status kısmı alt satıra geçecek */}
+                <span className="text-gray-800">•</span>
+                <div className="flex items-center space-x-2">
+                  <span className="text-gray-600">STATUS:</span>
+                  <span className="flex items-center space-x-1">
+                    <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></span>
+                    <span className="text-green-400">ACTIVE</span>
+                  </span>
                 </div>
               </div>
 

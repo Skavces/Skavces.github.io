@@ -4,7 +4,9 @@
 @tailwind utilities;
 
 html, body {
-  background-color: #000000; /* Veya kullandığın en koyu renk, örn: bg-gray-950 hex kodu */
-  color: white;
-  overscroll-behavior-y: none; /* İstersen esnetme efektini tamamen kapatır (opsiyonel) */
+  margin: 0;
+  padding: 0;
+  background-color: #000000; /* Arka plan kesin siyah olsun */
+  overscroll-behavior-y: none; /* İşte o yaylanmayı kapatan kod bu */
+  height: 100%;
 }
