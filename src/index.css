@@ -2,3 +2,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html, body {
+  background-color: #000000; /* Veya kullandığın en koyu renk, örn: bg-gray-950 hex kodu */
+  color: white;
+  overscroll-behavior-y: none; /* İstersen esnetme efektini tamamen kapatır (opsiyonel) */
+}

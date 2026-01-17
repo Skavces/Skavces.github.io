@@ -25,16 +25,25 @@ export default function Footer() {
   ];
 
   const quickLinks = [
-    { name: 'home', href: '#home' },
-    { name: 'about', href: '#about' },
-    { name: 'projects', href: '#projects' },
-    { name: 'contact', href: '#contact' }
+    { name: 'home', id: 'home' },
+    { name: 'about', id: 'about' },
+    { name: 'projects', id: 'projects' },
+    { name: 'contact', id: 'contact' }
   ];
 
   const currentYear = new Date().getFullYear();
 
+  // Yumuşak kaydırma fonksiyonu
+  const handleScroll = (e, id) => {
+    e.preventDefault();
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
-    <footer className="relative bg-black border-t border-gray-800">
+    <footer className="relative bg-black border-t border-white/5">
       {/* Grid overlay */}
       <div className="absolute inset-0 bg-[linear-gradient(rgba(15,118,110,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(15,118,110,0.02)_1px,transparent_1px)] bg-[length:40px_40px]"></div>
 
@@ -44,7 +53,7 @@ export default function Footer() {
           {/* Brand Section */}
           <div className="space-y-4">
             <div className="flex items-center space-x-3">
-              <div className="bg-gray-900 border border-gray-800 rounded p-2">
+              <div className="bg-gray-900 border border-white/10 rounded p-2">
                 <Terminal className="w-5 h-5 text-teal-400" />
               </div>
               <div className="flex flex-col">
@@ -71,8 +80,9 @@ export default function Footer() {
               {quickLinks.map((link, index) => (
                 <a
                   key={index}
-                  href={link.href}
-                  className="group flex items-center space-x-2 text-gray-500 hover:text-teal-400 transition-colors text-sm font-mono"
+                  href={`#${link.id}`}
+                  onClick={(e) => handleScroll(e, link.id)}
+                  className="group flex items-center space-x-2 text-gray-500 hover:text-teal-400 transition-colors text-sm font-mono cursor-pointer"
                 >
                   <span className="text-teal-400 opacity-0 group-hover:opacity-100 transition-opacity">$</span>
                   <span className="group-hover:translate-x-1 transition-transform">
@@ -96,7 +106,7 @@ export default function Footer() {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group p-3 bg-gray-950 border border-gray-800 rounded hover:border-teal-800/50 transition-all"
+                  className="group p-3 bg-gray-950 border border-white/10 rounded hover:border-teal-500/50 transition-all"
                   aria-label={social.label}
                   title={social.label}
                 >
@@ -113,12 +123,12 @@ export default function Footer() {
         </div>
 
         {/* Divider */}
-        <div className="border-t border-gray-800 my-8"></div>
+        <div className="border-t border-white/5 my-8"></div>
 
         {/* Bottom Section */}
         <div className="space-y-4">
           {/* System Info */}
-          <div className="bg-gray-950/50 border border-gray-800 rounded-lg p-4">
+          <div className="bg-gray-950/50 border border-white/10 rounded-lg p-4">
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 font-mono text-xs">
               <div className="flex items-center space-x-4">
                 <div className="flex items-center space-x-2">
@@ -130,21 +140,13 @@ export default function Footer() {
                   <span className="text-gray-600">BUILD:</span>
                   <span className="text-teal-400">{currentYear}</span>
                 </div>
-                <span className="text-gray-800">•</span>
-                <div className="flex items-center space-x-2">
-                  <span className="text-gray-600">STATUS:</span>
-                  <span className="flex items-center space-x-1">
-                    <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></span>
-                    <span className="text-green-400">ACTIVE</span>
-                  </span>
-                </div>
               </div>
 
               <div className="flex items-center space-x-2">
-                <span className="px-2 py-1 bg-gray-900 border border-gray-800 rounded text-gray-500">
+                <span className="px-2 py-1 bg-gray-900 border border-white/10 rounded text-gray-500">
                   React + Vite
                 </span>
-                <span className="px-2 py-1 bg-gray-900 border border-gray-800 rounded text-gray-500">
+                <span className="px-2 py-1 bg-gray-900 border border-white/10 rounded text-gray-500">
                   Tailwind
                 </span>
               </div>
