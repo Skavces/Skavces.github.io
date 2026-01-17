@@ -1,93 +1,28 @@
-# Portfolio Website - Selim Kavaklıçeşme
+# SELİM_KAVAKLIÇEŞME | Personal Portfolio
 
-Modern ve interaktif kişisel portfolio web sitesi. React + Vite ile geliştirilmiştir.
+<div align="center">
+  <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React" />
+  <img src="https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white" alt="Vite" />
+  <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind CSS" />
+</div>
 
-## 🚀 Özellikler
+<br />
 
-- **Modern UI/UX**: Glassmorphism ve gradient efektleri ile çağdaş tasarım
-- **Responsive**: Tüm cihazlarda mükemmel görünüm
-- **Smooth Animations**: Akıcı geçişler ve hover efektleri
-- **Dark Theme**: Göz yormayan karanlık tema
-- **Section Navigation**: Intersection Observer ile otomatik section tracking
-- **Contact Cards**: Sosyal medya ve iletişim bilgileri için interaktif kartlar
+## 👨‍💻 About The Project
 
-## 🛠️ Teknolojiler
+This is my personal portfolio website, designed with a **terminal & cyberpunk aesthetic**. It showcases my projects, skills, and experience as a **Backend Developer**.
 
-- **React 18** - UI library
-- **Vite** - Build tool ve dev server
-- **Tailwind CSS** - Utility-first CSS framework
-- **Lucide React** - Modern icon library
-- **Intersection Observer API** - Scroll tracking
+> "Building scalable systems with passion."
 
-## 📦 Kurulum
+### ⚡ Features
+- **Terminal Theme:** A geeky, developer-focused UI.
+- **Matrix Rain Effect:** Custom canvas-based animation.
+- **Responsive Design:** Looks great on desktop and mobile.
+- **Fast & Modern:** Built with React + Vite for optimal performance.
 
-```bash
-# Bağımlılıkları yükle
-npm install
+## 🛠️ Tech Stack
 
-# Development server'ı başlat
-npm run dev
-
-# Production build
-npm run build
-
-# Build'i önizle
-npm run preview
-```
-
-## 📂 Proje Yapısı
-
-```
-src/
-├── components/
-│   ├── Navbar.jsx      # Navigation bar ve scroll tracking
-│   ├── Hero.jsx        # Ana sayfa hero section
-│   ├── About.jsx       # Hakkımda bölümü
-│   ├── Projects.jsx    # Projeler showcase
-│   └── Contact.jsx     # İletişim kartları
-├── App.jsx             # Ana uygulama component'i
-└── main.jsx            # Uygulama giriş noktası
-```
-
-## 🎨 Özelleştirme
-
-### Renkler
-Tailwind config'de cyan/blue gradient teması kullanılmaktadır. `tailwind.config.js` dosyasından renkleri özelleştirebilirsiniz.
-
-### İçerik
-- **Navbar.jsx**: İsim ve unvan bilgileri
-- **Contact.jsx**: Sosyal medya linkleri ve iletişim bilgileri
-- **Projects.jsx**: Proje kartları ve açıklamaları
-
-## 📱 Responsive Breakpoints
-
-- **Mobile**: < 768px
-- **Tablet**: 768px - 1024px
-- **Desktop**: > 1024px
-
-## 🌟 Öne Çıkan Özellikler
-
-### Intersection Observer
-Navbar sekmeleri, sayfada hangi section'ın görünür olduğunu otomatik algılar ve aktif sekmeyi günceller.
-
-### Glassmorphism Effect
-Modern glassmorphism efekti ile backdrop blur ve yarı saydam arka planlar.
-
-### Smooth Scroll
-CSS `scroll-behavior: smooth` ile yumuşak sayfa geçişleri.
-
-## 📄 Lisans
-
-Bu proje kişisel kullanım içindir.
-
-## 👤 İletişim
-
-- **Email**: selimkavaklicesme@gmail.com
-- **LinkedIn**: [Selim Kavaklıçeşme](https://www.linkedin.com/in/selim-kavakl%C4%B1%C3%A7e%C5%9Fme-a1b7b3351/)
-- **GitHub**: [Skavces](https://github.com/Skavces)
-- **WhatsApp**: +90 551 602 10 21
-- **Instagram**: [@jedelx](https://instagram.com/jedelx)
-
----
-
-**Built with ❤️ by Selim Kavaklıçeşme**
+- **Frontend:** React.js, Vite
+- **Styling:** Tailwind CSS
+- **Icons:** Lucide React
+- **Animation:** HTML5 Canvas (Custom Matrix Effect)
