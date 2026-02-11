@@ -20,9 +20,9 @@ const footerLinks = [
   {
     title: 'İletişim',
     links: [
-      { label: '+90 (500) 123 45 67', href: 'tel:+905001234567' },
-      { label: 'info@newgruptemizlik.com', href: 'mailto:info@newgruptemizlik.com' },
-      { label: 'Soma, Manisa', href: '#iletisim' },
+      { label: '+90 536 883 1994', href: 'tel:+905368831994' },
+      { label: 'info@newgruptemizlik.com.tr', href: 'mailto:info@newgruptemizlik.com.tr' },
+      { label: 'Atatürk Mah. İzgin Sk. No:4 Soma/Manisa', href: '#iletisim' },
     ],
   },
 ]
@@ -101,9 +101,20 @@ export default function Footer() {
           <p className="text-sm" style={{ color: 'var(--text-faint)' }}>
             © 2026 New Grup Temizlik Hizmetleri. Tüm hakları saklıdır.
           </p>
-          <div className="flex items-center gap-2 text-xs" style={{ color: 'var(--text-faint)' }}>
-            <span className="w-2 h-2 bg-accent rounded-full" />
-            Güçlü &amp; Güvenilir
+          <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
+            <a
+              href="https://selimkavaklicesme.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs transition-colors duration-200 hover:text-primary"
+              style={{ color: 'var(--text-faint)' }}
+            >
+              Tasarım & Kodlama: <span className="font-medium" style={{ color: 'var(--text-primary)' }}>Selim Kavaklıçeşme</span>
+            </a>
+            <div className="flex items-center gap-2 text-xs" style={{ color: 'var(--text-faint)' }}>
+              <span className="w-2 h-2 bg-accent rounded-full" />
+              Güçlü & Güvenilir
+            </div>
           </div>
         </div>
       </div>
