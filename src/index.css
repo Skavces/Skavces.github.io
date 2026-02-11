@@ -7,7 +7,10 @@
   --color-accent: #7FBF3A;
   --color-accent-dark: #6aa82e;
   --color-accent-light: #f0f8e6;
-  --color-dark: #1a1a2e;
+  --color-dark: #0a0e1a;
+  --color-dark-card: #111827;
+  --color-dark-surface: #0f172a;
+  --color-dark-border: rgba(255, 255, 255, 0.06);
   --color-gray-50: #f8fafc;
   --color-gray-100: #f1f5f9;
   --color-gray-200: #e2e8f0;
@@ -21,6 +24,56 @@
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
 }
 
+/* ——— Theme CSS Variables ——— */
+:root,
+[data-theme="dark"] {
+  --bg-body: #0a0e1a;
+  --bg-card: rgba(255, 255, 255, 0.03);
+  --bg-card-hover: rgba(255, 255, 255, 0.06);
+  --bg-surface: #0f172a;
+  --bg-nav: rgba(10, 14, 26, 0.8);
+  --bg-nav-mobile: rgba(15, 23, 42, 0.95);
+  --border-subtle: rgba(255, 255, 255, 0.05);
+  --border-hover: rgba(31, 110, 199, 0.2);
+  --text-primary: #ffffff;
+  --text-secondary: #e2e8f0;
+  --text-muted: #94a3b8;
+  --text-faint: #64748b;
+  --text-nav: #94a3b8;
+  --text-nav-hover: #ffffff;
+  --input-bg: rgba(255, 255, 255, 0.03);
+  --input-border: rgba(255, 255, 255, 0.1);
+  --badge-bg: rgba(31, 110, 199, 0.1);
+  --badge-border: rgba(31, 110, 199, 0.2);
+  --shadow-color: rgba(0, 0, 0, 0.2);
+  --particle-color: rgba(127, 191, 58, 0.4);
+  --glow-shadow: 0 0 0 2px rgba(31, 110, 199, 0.3), 0 0 20px rgba(31, 110, 199, 0.1);
+}
+
+[data-theme="light"] {
+  --bg-body: #f8fafc;
+  --bg-card: rgba(255, 255, 255, 0.8);
+  --bg-card-hover: rgba(255, 255, 255, 1);
+  --bg-surface: #ffffff;
+  --bg-nav: rgba(255, 255, 255, 0.85);
+  --bg-nav-mobile: rgba(255, 255, 255, 0.97);
+  --border-subtle: rgba(0, 0, 0, 0.08);
+  --border-hover: rgba(31, 110, 199, 0.3);
+  --text-primary: #0f172a;
+  --text-secondary: #1e293b;
+  --text-muted: #475569;
+  --text-faint: #64748b;
+  --text-nav: #475569;
+  --text-nav-hover: #0f172a;
+  --input-bg: rgba(0, 0, 0, 0.03);
+  --input-border: rgba(0, 0, 0, 0.12);
+  --badge-bg: rgba(31, 110, 199, 0.08);
+  --badge-border: rgba(31, 110, 199, 0.15);
+  --shadow-color: rgba(0, 0, 0, 0.08);
+  --particle-color: rgba(127, 191, 58, 0.25);
+  --glow-shadow: 0 0 0 2px rgba(31, 110, 199, 0.2), 0 0 15px rgba(31, 110, 199, 0.08);
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;
@@ -30,16 +83,91 @@
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    background-color: var(--bg-body);
+    color: var(--text-secondary);
+    transition: background-color 0.4s ease, color 0.4s ease;
   }
+}
 
-  .fade-in-section {
+/* Particle background for Hero */
+.hero-particles {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.hero-particles span {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: var(--particle-color);
+  border-radius: 50%;
+  animation: float-particle linear infinite;
+}
+
+@keyframes float-particle {
+  0% {
+    transform: translateY(100vh) scale(0);
     opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.7s ease-out, transform 0.7s ease-out;
   }
-
-  .fade-in-section.is-visible {
+  10% {
     opacity: 1;
-    transform: translateY(0);
   }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-10vh) scale(1);
+    opacity: 0;
+  }
+}
+
+/* Glowing input focus effect */
+.glow-input {
+  transition: all 0.3s ease;
+}
+
+.glow-input:focus {
+  box-shadow: var(--glow-shadow);
+}
+
+/* Theme-aware card */
+.theme-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.theme-card:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-hover);
+  box-shadow: 0 4px 20px var(--shadow-color);
+}
+
+/* Theme-aware input */
+.theme-input {
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+  color: var(--text-primary);
+  transition: all 0.3s ease;
+}
+
+.theme-input::placeholder {
+  color: var(--text-faint);
+}
+
+.theme-input:focus {
+  box-shadow: var(--glow-shadow);
+  border-color: rgba(31, 110, 199, 0.4);
+}
+
+/* Light theme overwrites for blur effects */
+[data-theme="light"] .hero-particles span {
+  background: rgba(31, 110, 199, 0.2);
+}
+
+/* Smooth transition for themed elements */
+.theme-transition {
+  transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
 }

@@ -1,0 +1,42 @@
+.animated-gradient-text {
+  display: inline;
+  position: relative;
+  overflow: visible;
+}
+
+.animated-gradient-text-inner {
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  background-size: 300% 100%;
+  animation: gradient-shift linear infinite;
+  line-height: 1.4 !important;
+  padding: 0.15em 0;
+  display: inline;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+.animated-gradient-border {
+  position: absolute;
+  inset: -2px;
+  border-radius: 9999px;
+  background-size: 300% 100%;
+  animation: gradient-shift linear infinite;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask-composite: xor;
+  padding: 2px;
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
