@@ -1,4 +1,5 @@
 import { Facebook, Instagram, Linkedin, Youtube } from 'lucide-react'
+import GradientText from '../reactbits/GradientText'
 
 const footerLinks = [
   {
@@ -101,20 +102,23 @@ export default function Footer() {
           <p className="text-sm" style={{ color: 'var(--text-faint)' }}>
             © 2026 New Grup Temizlik Hizmetleri. Tüm hakları saklıdır.
           </p>
-          <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
+          <div className="flex items-center gap-2">
             <a
               href="https://selimkavaklicesme.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-xs transition-colors duration-200 hover:text-primary"
+              className="text-sm transition-colors duration-200 hover:text-white group flex items-center gap-1"
               style={{ color: 'var(--text-faint)' }}
             >
-              Tasarım & Kodlama: <span className="font-medium" style={{ color: 'var(--text-primary)' }}>Selim Kavaklıçeşme</span>
+              Tasarım & Kodlama: 
+              <GradientText 
+                colors={['#60A5FA', '#34D399', '#60A5FA', '#34D399']} 
+                animationSpeed={4}
+                className="font-bold text-base"
+              >
+                Selim Kavaklıçeşme
+              </GradientText>
             </a>
-            <div className="flex items-center gap-2 text-xs" style={{ color: 'var(--text-faint)' }}>
-              <span className="w-2 h-2 bg-accent rounded-full" />
-              Güçlü & Güvenilir
-            </div>
           </div>
         </div>
       </div>
