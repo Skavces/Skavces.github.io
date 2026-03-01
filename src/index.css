@@ -93,23 +93,14 @@
       color 0.4s ease;
   }
 
-  /* Custom Scrollbar Styling */
+  /* Hide Scrollbar completely but keep scrolling functionality */
+  * {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+
   ::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
-  }
-
-  ::-webkit-scrollbar-track {
-    background: var(--bg-body);
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background: var(--border-hover);
-    border-radius: 10px;
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    background: var(--color-primary);
+    display: none;
   }
 }
 
