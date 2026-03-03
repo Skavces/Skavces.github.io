@@ -15,6 +15,48 @@
       rel="stylesheet"
     />
     <title>New Grup Temizlik Hizmetleri</title>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "ProfessionalService",
+          "@id": "https://www.newtemizlik.com/#organization",
+          "name": "New Temizlik GES Çözümleri",
+          "description": "Endüstriyel Güneş Paneli temizliği ve otonom yıkama robotu satışları.",
+          "areaServed": {
+            "@type": "City",
+            "name": "Soma"
+          },
+          "telephone": "+905555555555",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Soma",
+            "addressRegion": "Manisa",
+            "addressCountry": "TR"
+          }
+        },
+        {
+          "@type": "Product",
+          "@id": "https://www.newtemizlik.com/#robot",
+          "name": "Otonom GES Temizlik Robotu",
+          "description": "Büyük ölçekli güneş enerji santralleri için insansız, yapay zeka destekli profesyonel panel yıkama makinesi.",
+          "category": "Industrial Equipment",
+          "offers": {
+            "@type": "Offer",
+            "availability": "https://schema.org/InStock",
+            "priceCurrency": "TRY"
+          }
+        },
+        {
+          "@type": "Service",
+          "@id": "https://www.newtemizlik.com/#cleaning-service",
+          "name": "Saf Su ile Endüstriyel Panel Yıkama",
+          "provider": { "@id": "https://www.newtemizlik.com/#organization" }
+        }
+      ]
+    }
+    </script>
   </head>
   <body>
     <div id="root"></div>

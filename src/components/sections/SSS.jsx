@@ -7,7 +7,7 @@ import { useTheme } from '../../context/useTheme'
 const faqs = [
   {
     question: 'Hangi bölgelere hizmet veriyorsunuz?',
-    answer: 'Başta olmak üzere çevre illere profesyonel temizlik hizmeti sunmaktayız. Büyük projeler için Türkiye genelinde hizmet sağlamaktayız.',
+    answer: 'Başta Soma/Manisa olmak üzere çevre illere profesyonel temizlik hizmeti sunmaktayız. Büyük projeler için Türkiye genelinde hizmet sağlamaktayız.',
   },
   {
     question: 'Güneş paneli temizliği ne sıklıkla yapılmalıdır?',

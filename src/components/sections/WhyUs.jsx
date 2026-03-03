@@ -5,12 +5,12 @@ import GradientText from '../reactbits/GradientText'
 import { useTheme } from '../../context/useTheme'
 
 const highlights = [
-  { icon: Zap, title: 'Hızlı Ekip', description: 'Deneyimli ekibimiz en kısa sürede sahada.' },
-  { icon: ShieldCheck, title: 'Güvenilir Hizmet', description: 'Sertifikalı ve sigortalı profesyonel kadro.' },
-  { icon: Wrench, title: 'Modern Ekipman', description: 'Son teknoloji araç ve gereçlerle donatılmış ekip.' },
-  { icon: CalendarCheck, title: 'Planlı Çalışma', description: 'Sistematik ve zamanında teslim garantisi.' },
-  { icon: Award, title: 'Kalite Kontrol', description: 'Her aşamada titiz kalite denetimi uyguluyoruz.' },
-  { icon: HeadphonesIcon, title: '7/24 Destek', description: 'İhtiyacınız olduğunda her zaman yanınızdayız.' },
+  { icon: Zap, title: 'Veri Odaklı ROI Analizi', description: 'Temizlik öncesi ve sonrası üretim artışını termal dronlar ve inverter verileriyle raporluyoruz.' },
+  { icon: ShieldCheck, title: 'ISG ve Otonom Teknoloji', description: 'Sahada riskleri sıfıra indiren otonom temizlik robotlarımızla uluslararası İş Güvenliği (ISG) standartlarındayız.' },
+  { icon: Wrench, title: 'Saf Su ve Hassas Bakım', description: 'Panellerin anti-reflektif yüzeyine zarar vermeyen ultra saf su sistemleri kullanıyoruz.' },
+  { icon: CalendarCheck, title: 'Düzenli Periyodik Bakım', description: 'Mevsimsel tozlanma ve kirlenme verilerine göre optimize edilmiş yıllık bakım sözleşmeleri.' },
+  { icon: Award, title: 'Sertifikalı Mühendis Kadrosu', description: 'Sadece temizlik değil, aynı zamanda GES performans mühendisliği hizmeti sunuyoruz.' },
+  { icon: HeadphonesIcon, title: '7/24 Kesintisiz İzleme', description: 'Olası bir arıza veya verim düşüklüğünde anında müdahale için sistemlerinizi izliyoruz.' },
 ]
 
 const stats = [
@@ -40,7 +40,7 @@ export default function WhyUs() {
             </div>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4" style={{ color: 'var(--text-primary)' }}>
               <GradientText colors={isDark ? ['#fff', '#7FBF3A', '#fff'] : ['#0f172a', '#7FBF3A', '#0f172a']} animationSpeed={6}>
-                Güvenin Adresi
+                Neden Sıradan Bir Temizlik Firması Değiliz?
               </GradientText>
             </h2>
             <p className="text-lg max-w-2xl mx-auto" style={{ color: 'var(--text-muted)' }}>

@@ -1,7 +1,16 @@
 import { useEffect, useState } from 'react'
 
-export default function WhatsAppButton() {
+export default function WhatsAppButton({ type = 'general' }) {
   const [isVisible, setIsVisible] = useState(false)
+  
+  const phoneNumber = "905304738793";
+  const messages = {
+    general: "Merhaba, GES santralimizin bakım & temizlik süreçleri ve verimlilik analizi hakkında mühendislerinizden bilgi almak istiyoruz.",
+    robot: "Merhaba, endüstriyel otonom güneş paneli temizlik robotunuzla ilgili teknik spesifikasyon ve fiyat teklifi rica ediyorum."
+  };
+
+  const message = encodeURIComponent(messages[type] || messages.general);
+  const waUrl = `https://wa.me/${phoneNumber}?text=${message}`;
 
   useEffect(() => {
     // Delay slightly to trigger the transition animation on mount
@@ -11,13 +20,13 @@ export default function WhatsAppButton() {
 
   return (
     <a
-      href="https://wa.me/905304738793"
+      href={waUrl}
       target="_blank"
       rel="noopener noreferrer"
-      className={`fixed bottom-6 right-6 z-50 flex items-center justify-center w-14 h-14 rounded-full bg-[#25D366] text-white shadow-lg hover:bg-[#128C7E] hover:-translate-y-1 transition-all duration-300 ${
+      className={`fixed bottom-6 right-6 z-50 flex items-center justify-center w-14 h-14 rounded-full bg-[#25D366] text-white shadow-lg shadow-[#25D366]/30 hover:bg-[#128C7E] hover:-translate-y-1 hover:shadow-xl hover:shadow-[#25D366]/40 transition-all duration-300 ${
         isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-50'
       }`}
-      aria-label="WhatsApp'tan Bize Ulaşın"
+      aria-label="WhatsApp üzerinden mühendislerimizle görüşün"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"

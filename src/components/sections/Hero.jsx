@@ -8,9 +8,9 @@ import AnimatedContent from '../reactbits/AnimatedContent'
 const base = import.meta.env.BASE_URL
 
 const mediaItems = [
-  { type: 'video', src: `${base}media-7.mp4` },
-  { type: 'video', src: `${base}media-8.mp4` },
-  { type: 'video', src: `${base}media-5.mp4` }
+  { type: 'video', src: `${base}otonom-panel-yikama-robotu-test.mp4`, alt: 'Soma GES otonom panel yıkama robotu saha testi ve performans analizi' },
+  { type: 'video', src: `${base}soma-endustriyel-temizlik-makinesi.mp4`, alt: 'Endüstriyel güneş santralleri için yapay zeka destekli otonom temizlik makinesi' },
+  { type: 'video', src: `${base}ges-temizlik-referans-uygulamasi-1.mp4`, alt: 'Türkiye geneli güneş enerjisi santralleri verimlilik artırıcı profesyonel temizlik referansı' }
 ]
 
 const PARTICLES = Array.from({ length: 30 }, (_, i) => ({
@@ -85,13 +85,15 @@ export default function Hero() {
             {item.type === 'image' ? (
               <img
                 src={item.src}
-                alt={`Proje ${index + 1}`}
+                alt={item.alt || `Proje ${index + 1}`}
                 className="w-full h-full object-cover"
                 loading="lazy"
               />
             ) : (
               <video
                 src={item.src}
+                aria-label={item.alt}
+                title={item.alt}
                 className="w-full h-full object-cover"
                 muted
                 playsInline
@@ -129,7 +131,7 @@ export default function Hero() {
 
           <AnimatedContent distance={40} duration={0.8} delay={0.2}>
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[4.8rem] font-black text-white leading-[1.1] mb-6 drop-shadow-2xl" style={{ textShadow: '0 10px 40px rgba(0,0,0,0.8)' }}>
-              Türkiye Geneline Profesyonel Güneş Paneli Hizmetleri
+              Endüstriyel GES Temizliği ve Otonom Robot Teknolojileri
             </h1>
           </AnimatedContent>
 
@@ -146,9 +148,9 @@ export default function Hero() {
           </AnimatedContent>
 
           <AnimatedContent distance={30} duration={0.8} delay={0.8}>
-            <p className="text-lg md:text-xl mb-8 leading-relaxed max-w-3xl mx-auto text-white/80 drop-shadow">
-              Güneş paneli temizliğinden robotik çözümlere, endüstriyel bakım hizmetlerinden izleme sistemlerine kadar kapsamlı ve güvenilir destek sunuyoruz.
-            </p>
+            <h2 className="text-lg md:text-xl mb-8 leading-relaxed max-w-3xl mx-auto text-white/80 drop-shadow">
+              Soma ve Çevresinde Minimum Verim Kaybı, Maksimum Enerji Üretimi İçin Mühendislik Çözümleri
+            </h2>
           </AnimatedContent>
 
           <AnimatedContent distance={20} duration={0.6} delay={1}>
@@ -160,7 +162,7 @@ export default function Hero() {
                   shadow-xl shadow-primary/25 hover:shadow-2xl hover:shadow-primary/40
                   hover:-translate-y-1 transition-all duration-300"
               >
-                Teklif Al
+                Ücretsiz Verimlilik Kaybı Analizi Talep Et
                 <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </a>
               <a
