@@ -5,7 +5,7 @@ import { useTheme } from '../../context/useTheme'
 
 const contactInfo = [
   { icon: MapPin, label: 'Adres', value: 'Atatürk Mah. İzgin Sk. No:4 Soma/Manisa' },
-  { icon: Phone, label: 'Telefon', value: '+90 536 883 1994' },
+  { icon: Phone, label: 'Telefon', value: '+90 530 473 87 93' },
   { icon: Mail, label: 'E-posta', value: 'info@newgruptemizlik.com.tr' },
   { icon: Clock, label: 'Çalışma Saatleri', value: 'Pzt – Cmt: 09:00 – 18:00, Pazar: Kapalı' },
 ]

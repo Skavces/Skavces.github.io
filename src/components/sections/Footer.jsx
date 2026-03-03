@@ -21,7 +21,7 @@ const footerLinks = [
   {
     title: 'İletişim',
     links: [
-      { label: '+90 536 883 1994', href: 'tel:+905368831994' },
+      { label: '+90 530 473 87 93', href: 'tel:+905304738793' },
       { label: 'info@newgruptemizlik.com.tr', href: 'mailto:info@newgruptemizlik.com.tr' },
       { label: 'Atatürk Mah. İzgin Sk. No:4 Soma/Manisa', href: '#iletisim' },
     ],
