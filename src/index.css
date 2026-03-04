@@ -102,6 +102,20 @@
   ::-webkit-scrollbar {
     display: none;
   }
+
+  /* Respect OS-level reduced motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+    .hero-particles span {
+      display: none;
+    }
+  }
 }
 
 /* Particle background for Hero */
@@ -192,4 +206,14 @@
     color 0.4s ease,
     border-color 0.4s ease,
     box-shadow 0.4s ease;
+}
+
+/* Mobilde ağır blur efektlerini hafiflet */
+@media (max-width: 767px) {
+  .blur-\[120px\] {
+    filter: blur(60px);
+  }
+  .blur-\[100px\] {
+    filter: blur(50px);
+  }
 }

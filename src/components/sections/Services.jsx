@@ -20,7 +20,7 @@ const services = [
       'Santral üretim verilerini inceleyerek performans düşüşlerini tespit ediyoruz. Planlı bakım ve kontroller ile sistemin düzenli ve verimli çalışmasına destek oluyoruz.',
     gradient: 'from-primary to-blue-400',
     spotlightColor: 'rgba(31, 110, 199, 0.2)',
-    img: 'soma-gunes-enerjisi-santrali-uzman-bakim.jpg',
+    img: 'soma-gunes-enerjisi-santrali-uzman-bakim.webp',
     alt: 'Güneş enerjisi santralinde bakım ve performans kontrol çalışması'
   },
   {
@@ -79,10 +79,12 @@ export default function Services() {
               >
                 {/* Service Image */}
                 <div className="w-full h-36 sm:h-44 bg-gray-900/10 dark:bg-gray-100/5 mb-4 overflow-hidden rounded-t-2xl">
-                  <img 
-                    src={`${import.meta.env.BASE_URL}${service.img}`} 
+                  <img
+                    src={`${import.meta.env.BASE_URL}${service.img}`}
                     alt={service.alt || service.title}
                     title={service.alt || service.title}
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full text-[0px] object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>

@@ -12,7 +12,7 @@ const references = [
   { name: 'Saloni', logo: 'saloni.png' },
   { name: 'Sun Tekstil', logo: 'suntekstil.png' },
   { name: 'Wolfex', logo: 'wolfex.png' },
-  { name: 'Hasan Atak', logo: 'hasanatak.png'}
+  { name: 'Hasan Atak', logo: 'hasanatak.webp'}
 ]
 
 export default function Referanslar() {
@@ -61,6 +61,8 @@ export default function Referanslar() {
                 <img
                   src={`${import.meta.env.BASE_URL}${ref.logo}`}
                   alt={`${ref.name} Logosu`}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-contain transition-all duration-300 group-hover:scale-110"
                 />
               </div>

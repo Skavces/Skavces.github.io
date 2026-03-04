@@ -20,7 +20,10 @@ export default function AnimatedContent({
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        setInView(entry.isIntersecting)
+        if (entry.isIntersecting) {
+          setInView(true)
+          observer.disconnect()
+        }
       },
       { threshold, rootMargin }
     )

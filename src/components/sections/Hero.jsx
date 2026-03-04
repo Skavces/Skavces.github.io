@@ -12,7 +12,9 @@ const mediaItems = [
   { type: 'video', src: `${base}ges-temizlik-referans-uygulamasi-1.mp4`, alt: 'Türkiye geneli güneş enerjisi santralleri verimlilik artırıcı profesyonel temizlik referansı' }
 ]
 
-const PARTICLES = Array.from({ length: 30 }, (_, i) => ({
+const isMobile = typeof window !== 'undefined' && window.innerWidth < 768
+const PARTICLE_COUNT = isMobile ? 10 : 30
+const PARTICLES = Array.from({ length: PARTICLE_COUNT }, (_, i) => ({
   id: i,
   left: `${Math.random() * 100}%`,
   duration: `${6 + Math.random() * 8}s`,
@@ -96,6 +98,7 @@ export default function Hero() {
                 className="w-full h-full object-cover"
                 muted
                 playsInline
+                preload={index === current ? 'auto' : 'none'}
                 autoPlay={index === current}
                 onEnded={() => {
                   if (index === current) next()
