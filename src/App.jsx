@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async'
 import Navbar from './components/sections/Navbar'
 import Hero from './components/sections/Hero'
 import Services from './components/sections/Services'
+import KirProblemleri from './components/sections/KirProblemleri'
 import WhyUs from './components/sections/WhyUs'
 import Process from './components/sections/Process'
 import Referanslar from './components/sections/Referanslar'
@@ -23,6 +24,7 @@ function App() {
         <Navbar />
         <Hero />
         <Services />
+        <KirProblemleri />
         <WhyUs />
         <Process />
         <Referanslar />
