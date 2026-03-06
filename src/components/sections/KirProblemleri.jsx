@@ -16,8 +16,7 @@ export default function KirProblemleri() {
   return (
     <section
       id="kir-problemleri"
-      aria-labelledby="kir-problemleri-title"
-      className="relative w-full py-24 md:py-32 scroll-mt-16 md:scroll-mt-20 overflow-hidden"
+      className="relative min-h-screen flex flex-col justify-center py-24 md:py-32 scroll-mt-16 md:scroll-mt-20"
     >
       {/* Background */}
       <div className="absolute inset-0 pointer-events-none">

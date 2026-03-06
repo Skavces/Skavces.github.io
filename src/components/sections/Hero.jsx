@@ -240,6 +240,9 @@ export default function Hero() {
         <span className="text-xs font-medium">Keşfet</span>
         <ChevronDown className="w-5 h-5 animate-bounce" />
       </a>
+
+      {/* Smooth transition gradient to next section */}
+      <div className="absolute inset-x-0 bottom-0 h-32 bg-linear-to-t from-(--bg-body) to-transparent z-10 pointer-events-none" />
     </section>
   )
 }

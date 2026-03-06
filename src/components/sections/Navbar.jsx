@@ -5,6 +5,7 @@ import { useTheme } from '../../context/useTheme'
 
 const navLinks = [
   { label: 'Ana Sayfa', href: '#' },
+  { label: 'Panel Kirliliği', href: '#kir-problemleri' },
   { label: 'Hizmetler', href: '#hizmetler' },
   { label: 'Hakkımızda', href: '#hakkimizda' },
   { label: 'Süreç', href: '#surec' },

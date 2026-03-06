@@ -23,8 +23,8 @@ function App() {
       <div className="min-h-screen theme-transition overflow-x-hidden" style={{ backgroundColor: 'var(--bg-body)' }}>
         <Navbar />
         <Hero />
-        <Services />
         <KirProblemleri />
+        <Services />
         <WhyUs />
         <Process />
         <Referanslar />

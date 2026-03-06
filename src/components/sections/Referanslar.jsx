@@ -20,7 +20,7 @@ export default function Referanslar() {
   const isDark = theme === 'dark'
 
   return (
-    <section id="referanslar" className="relative min-h-screen flex flex-col justify-center py-20 overflow-hidden">
+    <section id="referanslar" className="relative min-h-screen flex flex-col justify-center py-20">
       {/* Background elements */}
       <div className="absolute inset-0 pointer-events-none">
         <div className={`absolute top-0 right-1/4 w-[300px] h-[300px] rounded-full blur-[100px] ${isDark ? 'bg-primary/5' : 'bg-primary/3'}`} />

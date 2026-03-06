@@ -14,6 +14,7 @@ const footerLinks = [
     title: 'Kurumsal',
     links: [
       { label: 'Hakkımızda', href: '#hakkimizda' },
+      { label: 'Panel Kirliliği', href: '#kir-problemleri' },
       { label: 'Çalışma Sürecimiz', href: '#surec' },
       { label: 'İletişim', href: '#iletisim' },
     ],
